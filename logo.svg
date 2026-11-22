@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="72" viewBox="0 0 360 72" role="img" aria-label="Nederlandse Isolatie Groep">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.5">
+    <path d="M6 32 L36 7 L66 32" stroke="#0F2A44"/>
+    <path d="M15 44 L36 26.5 L57 44" stroke="#1A73B8"/>
+    <path d="M24 56 L36 46 L48 56" stroke="#8CC8F2"/>
+  </g>
+  <text x="82" y="30" font-family="'Space Grotesk','Arial',sans-serif" font-size="15" font-weight="600" letter-spacing="2.6" fill="#1A73B8">NEDERLANDSE</text>
+  <text x="81" y="58" font-family="'Space Grotesk','Arial',sans-serif" font-size="27" font-weight="700" letter-spacing="-0.5" fill="#0F2A44">Isolatie Groep</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 72 72" role="img" aria-label="Nederlandse Isolatie Groep">
+  <rect width="72" height="72" rx="16" fill="#EAF4FC"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.5" transform="translate(0 4)">
+    <path d="M6 32 L36 7 L66 32" stroke="#0F2A44"/>
+    <path d="M15 44 L36 26.5 L57 44" stroke="#1A73B8"/>
+    <path d="M24 56 L36 46 L48 56" stroke="#8CC8F2"/>
+  </g>
+</svg>
