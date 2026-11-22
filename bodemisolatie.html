@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bodemisolatie | Nederlandse Isolatie Groep</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 72 64%27%3E%3Cg fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%276.5%27%3E%3Cpath d=%27M6 32 L36 7 L66 32%27 stroke=%27%230F2A44%27/%3E%3Cpath d=%27M15 44 L36 26.5 L57 44%27 stroke=%27%231A73B8%27/%3E%3Cpath d=%27M24 56 L36 46 L48 56%27 stroke=%27%238CC8F2%27/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<style>
+:root{--groen:#1A73B8;--groen-d:#135A92;--groen-l:#EAF4FC;--groen-t:#8CC8F2;--tint:#EEF6FD;--zwart:#0F2A44;--grijs:#F2F7FC;--tekst:#4A5B6C;--lijn:#DCE6F0}
+*{box-sizing:border-box}
+body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:var(--zwart);background:#fff;font-size:17px;line-height:1.55}
+a{color:var(--zwart)}a:hover{color:var(--groen)}
+h1,h2,h3,.h{font-family:'Space Grotesk',system-ui,sans-serif;letter-spacing:-0.02em;font-weight:700}
+.wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px}
+input{font:inherit}
+input:focus{outline:3px solid var(--groen);outline-offset:1px}
+button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:700;padding:15px 26px;border-radius:8px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;font-size:17px;min-height:50px}
+.btn-groen{background:var(--groen);color:#fff}.btn-groen:hover{background:var(--groen-d);color:#fff}
+.btn-zwart{background:var(--zwart);color:#fff}.btn-zwart:hover{background:#000;color:#fff}
+.btn-rand{border:2px solid var(--groen);background:#fff;color:var(--groen)}.btn-rand:hover{background:var(--groen-l)}
+.sectietitel{margin:0;text-align:center;font-size:clamp(32px,4.4vw,56px);line-height:1.08}
+.sectie{padding-top:96px;padding-bottom:0}
+.hidden{display:none!important}
+.dropdown{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--lijn);box-shadow:0 20px 30px -20px rgba(0,0,0,.25);z-index:5}
+.dropdown .wrap{padding-top:24px;padding-bottom:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px 24px}
+.dropdown a{text-decoration:none;display:flex;flex-direction:column;font-weight:700}
+.dropdown a span{font-weight:400;color:var(--tekst);font-size:15px}
+.navknop{min-height:56px;background:transparent;border:0;padding:0;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;color:var(--zwart);cursor:pointer;display:flex;align-items:center;gap:8px}
+.navlink{min-height:56px;display:flex;align-items:center;text-decoration:none;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700}
+.veld{display:flex;flex-direction:column;gap:6px}
+.veld label{font-size:14px;color:var(--tekst)}
+.veld input{height:48px;border:1.5px solid #33475B;border-radius:4px;padding:0 12px;background:#fff;color:var(--zwart)}
+.nb input{height:52px;border:1.5px solid #C8D7E5;border-radius:6px;padding:0 14px}
+.nb label{font-weight:700;font-size:16px;color:var(--zwart)}
+.check{display:flex;gap:8px;align-items:flex-start}
+.check svg{flex:none;margin-top:5px}
+.dienstkaart{border:1.5px solid var(--groen);border-bottom-width:6px;border-radius:12px;padding:44px 36px 36px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.dienstkaart h3{margin:0;font-size:28px;text-align:center}
+.dienstkaart p{margin:0;font-size:18px}
+.pil{margin-top:auto;display:inline-flex;align-items:center;gap:12px;background:#F2F7FC;border:1px solid #D3E2EF;border-radius:8px;padding:12px 22px;color:var(--groen);font-weight:700;text-decoration:none;font-family:'Space Grotesk',sans-serif;font-size:18px}
+.pil:hover{background:var(--groen-l);color:var(--groen-d)}
+.stapkaart{position:relative;background:var(--tint);border-radius:12px;padding:44px 22px 30px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.stapkaart h3{margin:0;font-size:24px;line-height:1.15}
+.stapkaart p{margin:0;font-size:16px;color:#33475B}
+.stapnr{position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;background:var(--groen);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px #fff}
+@media (max-width:1100px) and (min-width:861px){.stappen5{grid-template-columns:repeat(3,minmax(0,1fr))!important;row-gap:40px!important}}
+.artikel img{object-fit:cover;display:block}
+.artikel img,.artikel .foto{width:100%;aspect-ratio:16/9;border-radius:4px;background:#D6E6F4;display:flex;align-items:center;justify-content:center;color:#4A5B6C;font-weight:700;font-size:14px;text-align:center;padding:12px}
+.artikel h3{margin:28px 0 6px;font-size:24px;line-height:1.2}
+.artikel p{margin:0 0 14px;color:#33475B}
+.artikel a{font-weight:700;text-decoration:none;font-family:'Space Grotesk',sans-serif;padding-left:12px}
+.logo-noot{margin-left:4px}
+.hamburger{display:none;flex:none;width:48px;height:48px;border:0;border-radius:8px;background:var(--groen);align-items:center;justify-content:center;cursor:pointer}
+.mobiel-menu{border-bottom:1px solid var(--lijn);background:#fff}
+.mobiel-menu details{border-top:1px solid var(--lijn)}
+.mobiel-menu summary{list-style:none;cursor:pointer;padding:16px 24px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;display:flex;justify-content:space-between;align-items:center}
+.mobiel-menu summary::-webkit-details-marker{display:none}
+.mobiel-menu summary::after{content:'';width:9px;height:9px;border-right:2.4px solid var(--zwart);border-bottom:2.4px solid var(--zwart);transform:rotate(45deg);margin-top:-5px;transition:transform .2s}
+.mobiel-menu details[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.mobiel-menu details a{display:block;padding:10px 24px 10px 40px;text-decoration:none;font-size:17px;color:var(--tekst)}
+.mobiel-menu details[open]{padding-bottom:10px;background:#F6FAFE}
+.mm-link{display:block;border-top:1px solid var(--lijn);padding:16px 24px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;text-decoration:none}
+
+/* ---------- Telefoon & tablet ---------- */
+@media (min-width:861px){.mobiel-menu{display:none!important}}
+@media (max-width:860px){
+  body{font-size:16px}
+  .wrap{padding-left:18px;padding-right:18px}
+  .tb-links,.tb-tijd{display:none!important}
+  .tb-tel{margin:0 auto}
+  .logo-rij{padding-top:12px!important;padding-bottom:12px!important}
+  .logo-noot{display:none}
+  .logo svg{width:46px;height:41px}
+  .logo-tekst{font-size:20px!important}
+  .logo-klein{font-size:11px!important}
+  .hamburger{display:flex}
+  .desk-nav{display:none}
+  .hero-foto{height:240px!important}
+  .hero-foto img{object-position:45% 25%!important}
+  .foto-label{top:12px!important;right:12px!important;left:12px;font-size:12px!important;text-align:center}
+  .hero-kaart{margin:-56px 6px 0!important;padding:26px 22px!important;gap:12px!important}
+  .hero-kaart h1{font-size:38px!important}
+  .hero-kaart .btn{align-self:stretch!important;margin-top:4px!important}
+  .direct{padding:28px 22px!important;gap:14px!important}
+  .direct h2{font-size:26px!important;flex-basis:100%!important}
+  .direct-links{grid-template-columns:1fr!important;gap:12px!important;font-size:18px!important}
+  .sectie{padding-top:64px}
+  .sectietitel{font-size:30px}
+  .stappen5{grid-template-columns:1fr!important;row-gap:36px!important}
+  .stapkaart{flex-direction:row;flex-wrap:wrap;text-align:left;align-items:center;padding:30px 22px 24px;gap:10px 16px}
+  .stapkaart svg{width:40px;height:40px;flex:none}
+  .stapkaart h3{font-size:22px}
+  .stapkaart p{flex-basis:100%;font-size:16px}
+  .stapnr{left:22px;transform:none}
+  .dienstkaart{padding:32px 22px 26px}
+  .dienstkaart h3{font-size:24px}
+  .dienstkaart p{font-size:16px}
+  .pil{font-size:16px;padding:12px 16px}
+  .btn{width:100%}
+  .btn[style*="min-width"]{min-width:0!important}
+  #aanvraag{margin-top:64px!important;padding:40px 0!important}
+  .form-kop{padding:22px 20px!important}
+  .form-kop h2{font-size:24px!important}
+  .review-kaart{padding:26px 22px!important}
+  .bel-blok{padding-left:0!important}
+  .artikel h3{margin-top:18px;font-size:21px}
+  footer{margin-top:64px!important}
+}
+
+/* ---------- Direct naar: uitklapbare kopjes ---------- */
+.dn-lijst{flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.dn-item{background:#fff;border:1.5px solid var(--lijn);border-radius:10px;overflow:hidden}
+.dn-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:var(--zwart)}
+.dn-item summary::-webkit-details-marker{display:none}
+.dn-item summary:hover{color:var(--groen)}
+.dn-item summary:focus-visible{outline:3px solid var(--groen-t);outline-offset:-3px}
+.dn-pijl{flex:none;width:34px;height:34px;border-radius:50%;background:var(--groen-l);display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.dn-item[open] .dn-pijl{transform:rotate(180deg)}
+.dn-tekst{padding:0 22px 22px;display:flex;flex-direction:column;gap:14px}
+.dn-tekst p{margin:0;font-size:18px;color:#33475B}
+.dn-tekst > a{align-self:flex-start;font-weight:700;color:var(--groen);text-decoration:none;font-family:'Space Grotesk',sans-serif}
+.dn-tekst > a:hover{color:var(--groen-d)}
+.dn-top{border:2px solid var(--groen);border-bottom-width:6px;box-shadow:0 14px 30px -20px rgba(26,115,184,.6)}
+.dn-top summary{font-size:26px;padding:22px}
+.dn-badge{display:inline-block;margin-left:10px;vertical-align:middle;background:var(--groen);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.02em;padding:4px 10px;border-radius:99px}
+.dn-punten{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:17px}
+@media (max-width:860px){
+  .dn-lijst{flex-basis:100%}
+  .dn-item summary{font-size:19px;padding:16px 18px}
+  .dn-top summary{font-size:22px}
+  .dn-tekst{padding:0 18px 18px}
+  .dn-tekst p{font-size:16px}
+  .dn-badge{margin:6px 0 0;display:table}
+}
+
+.pkop{background:var(--grijs);border-bottom:1px solid var(--lijn)}
+.pkop .wrap{padding-top:52px;padding-bottom:52px;display:flex;flex-direction:column;gap:16px}
+.kruimel{font-size:14px;color:var(--tekst)}.kruimel a{color:var(--tekst)}
+.pkop h1{margin:0;font-size:clamp(36px,5vw,60px);line-height:1.05}
+.pkop p.intro{margin:0;font-size:clamp(18px,1.8vw,21px);color:#33475B;max-width:760px}
+.pkop .knoppen{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.inh{padding-top:64px}
+.tweekol{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:start}
+.tekst h2{font-size:clamp(26px,3vw,34px);margin:0 0 14px;line-height:1.15}
+.tekst h3{font-size:22px;margin:28px 0 8px}
+.tekst p,.tekst li{color:#33475B;font-size:18px}
+.tekst p{margin:0 0 16px}
+.tekst ul.vink{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column;gap:10px}
+.tekst ol{padding-left:22px}.tekst ol li{margin-bottom:8px}
+.foto{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;display:block}
+.zijkaart{background:var(--tint);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.zijkaart h3{margin:0;font-size:22px}.zijkaart p{margin:0;color:#33475B}
+.faq{display:flex;flex-direction:column;gap:12px;max-width:860px}
+.faq details{border:1.5px solid var(--lijn);border-radius:10px;background:#fff}
+.faq summary{list-style:none;cursor:pointer;padding:18px 22px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';color:var(--groen);font-size:24px;line-height:1}
+.faq details[open] summary::after{content:'–'}
+.faq details p{margin:0;padding:0 22px 20px;color:#33475B}
+.cta{background:var(--zwart);color:#fff;border-radius:12px;padding:clamp(32px,5vw,56px);display:flex;flex-wrap:wrap;gap:24px 40px;align-items:center;justify-content:space-between}
+.cta h2{margin:0 0 6px;font-size:clamp(26px,3vw,36px);color:#fff}.cta p{margin:0;color:#C9DCEC;font-size:18px}
+.cta .knoppen{display:flex;flex-wrap:wrap;gap:12px}
+.cta .btn-wit{background:#fff;color:var(--zwart)}.cta .btn-wit:hover{background:var(--groen-l);color:var(--zwart)}
+.kaarten3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.ckaart{border:1.5px solid var(--lijn);border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:8px;text-decoration:none}
+.ckaart strong{font-family:'Space Grotesk',sans-serif;font-size:22px}
+.ckaart span{color:var(--tekst)}
+.ckaart:hover{border-color:var(--groen)}
+.artikeltekst{max-width:760px}
+.artikeltekst img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;margin:0 0 28px}
+.bron{font-size:14px;color:var(--tekst)}
+@media (max-width:860px){.tweekol{grid-template-columns:1fr;gap:32px}.pkop .wrap{padding-top:36px;padding-bottom:36px}.inh{padding-top:44px}.tekst p,.tekst li{font-size:16px}.cta .knoppen{width:100%}}
+</style>
+</head>
+<body>
+<!-- 1. Topbalk -->
+<div style="background:#EAF4FC;color:#0F2A44;font-size:14px;border-bottom:1px solid #D3E2EF">
+<div class="wrap" style="padding-top:8px;padding-bottom:8px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px">
+<a href="tel:+31685235975" class="tb-tel" style="color:#0F2A44;text-decoration:none;display:flex;align-items:center;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2" stroke="#0F2A44" stroke-width="2" stroke-linejoin="round"/></svg><strong>+31 6 85235975</strong><span class="tb-tijd">&nbsp;elke dag bereikbaar van 08:00 tot 20:00</span></a>
+</div>
+</div>
+
+<!-- 2. Logo -->
+<div style="border-bottom:1px solid var(--lijn)">
+<div class="wrap logo-rij" style="padding-top:18px;padding-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+<div style="display:flex;align-items:center;gap:10px;min-width:0">
+<a href="index.html" aria-label="Nederlandse Isolatie Groep, naar home" class="logo" style="display:inline-flex;align-items:center;gap:12px;text-decoration:none"><svg width="58" height="52" viewBox="0 0 72 64" fill="none" aria-hidden="true"><g stroke-linecap="round" stroke-linejoin="round" stroke-width="6.5"><path d="M6 32 L36 7 L66 32" stroke="#0F2A44"/><path d="M15 44 L36 26.5 L57 44" stroke="#1A73B8"/><path d="M24 56 L36 46 L48 56" stroke="#8CC8F2"/></g></svg><span class="logo-woord" style="display:flex;flex-direction:column;line-height:1"><span class="h logo-klein" style="font-size:13px;font-weight:600;letter-spacing:.2em;color:var(--groen)">NEDERLANDSE</span><span class="h logo-tekst" style="font-size:25px;color:var(--zwart);white-space:nowrap;margin-top:4px">Isolatie Groep</span></span></a>
+</div>
+<button type="button" id="hamburger" class="hamburger" aria-expanded="false" aria-controls="mobielMenu" aria-label="Menu openen">
+<svg id="hbIcoon" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7 H20 M4 12 H20 M4 17 H20" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+</button>
+</div>
+<div id="mobielMenu" class="mobiel-menu hidden">
+<details><summary>Isolatie</summary><a href="spouwmuurisolatie.html">Spouwmuurisolatie</a><a href="vloerisolatie.html">Vloerisolatie</a><a href="bodemisolatie.html">Bodemisolatie</a><a href="dakisolatie.html">Dakisolatie</a><a href="isolatieglas.html">HR++ en triple glas</a></details>
+<details><summary>Services</summary><a href="contact.html">Gratis adviesgesprek</a><a href="subsidie.html">Hulp bij subsidie</a><a href="werkwijze.html">Onze werkwijze</a></details>
+<details><summary>Over ons</summary><a href="over-ons.html">Over ons</a><a href="werkwijze.html">Onze werkwijze</a></details>
+<a class="mm-link" href="subsidie.html">Subsidie</a>
+<a class="mm-link" href="contact.html">Contact</a>
+<a class="mm-link" href="kennisbank.html">Kennisbank</a>
+<div style="padding:20px 24px 24px;display:flex;flex-direction:column;gap:10px">
+<a href="contact.html" class="btn btn-groen">Adviesgesprek aanvragen</a>
+<a href="tel:+31685235975" class="btn btn-rand">Bel +31 6 85235975</a>
+<a href="https://wa.me/31685235975" target="_blank" rel="noopener" class="btn btn-rand">WhatsApp ons (24/7)</a>
+</div>
+</div>
+</div>
+
+<!-- 3. Menu -->
+<nav aria-label="Hoofdmenu" class="desk-nav" style="border-bottom:1px solid var(--lijn);position:relative;background:#fff">
+<div class="wrap" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 36px">
+<div style="display:flex;flex-wrap:wrap;gap:4px 44px">
+<button type="button" class="navknop" data-menu="m-isolatie" aria-expanded="false">Isolatie <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9 L12 15 L18 9" stroke="#0F2A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<button type="button" class="navknop" data-menu="m-services" aria-expanded="false">Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9 L12 15 L18 9" stroke="#0F2A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<button type="button" class="navknop" data-menu="m-over" aria-expanded="false">Over ons <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9 L12 15 L18 9" stroke="#0F2A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:4px 44px">
+<a href="subsidie.html" class="navlink">Subsidie</a>
+<a href="contact.html" class="navlink">Contact</a>
+<a href="kennisbank.html" class="navlink">Kennisbank</a>
+</div>
+</div>
+<div id="m-isolatie" class="dropdown hidden"><div class="wrap">
+<a href="spouwmuurisolatie.html">Spouwmuurisolatie<span>Isolatie in de muur</span></a>
+<a href="vloerisolatie.html">Vloerisolatie<span>Warme vloer via de kruipruimte</span></a>
+<a href="bodemisolatie.html">Bodemisolatie<span>Minder vocht en kou van onderen</span></a>
+<a href="dakisolatie.html">Dakisolatie<span>Schuin en plat dak</span></a>
+<a href="isolatieglas.html">HR++ en triple glas<span>Isolerend glas</span></a>
+</div></div>
+<div id="m-services" class="dropdown hidden"><div class="wrap">
+<a href="contact.html">Gratis adviesgesprek<span>Bij u thuis, vrijblijvend</span></a>
+<a href="subsidie.html">Hulp bij subsidie<span>Wij zoeken uit wat voor u geldt</span></a>
+<a href="werkwijze.html">Onze werkwijze<span>Van gesprek tot isolatie</span></a>
+</div></div>
+<div id="m-over" class="dropdown hidden"><div class="wrap">
+<a href="over-ons.html">Over Nederlandse Isolatie Groep<span>Wie we zijn en hoe we werken</span></a>
+<a href="werkwijze.html">Onze werkwijze<span>Van adviesgesprek tot isolatie</span></a>
+<a href="contact.html">Contact<span>Bel, mail of vraag advies aan</span></a>
+</div></div>
+</nav>
+
+<main>
+<section class="pkop"><div class="wrap"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a> › Isolatie › Bodemisolatie</nav><h1>Bodemisolatie</h1><p class="intro">We brengen een isolerende laag aan op de bodem van uw kruipruimte. Daardoor komt er minder vocht en kou van onderen uw woning in.</p><div class="knoppen"><a href="contact.html" class="btn btn-groen">Gratis adviesgesprek</a><a href="tel:+31685235975" class="btn btn-rand">Bel +31 6 85235975</a></div></div></section>
+<section class="inh"><div class="wrap tweekol"><div class="tekst"><h2>Wat is bodemisolatie?</h2><p>Bij bodemisolatie leggen we een isolerende laag op de bodem van de kruipruimte, bijvoorbeeld van isolatiechips of -platen. Die laag houdt kou en vocht uit de bodem tegen. Zo blijft de kruipruimte droger en wordt uw vloer minder koud.</p><h3>De voordelen</h3><ul class="vink"><li class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5 L9.5 18 L20 6" stroke="#1A73B8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Een drogere kruipruimte</li><li class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5 L9.5 18 L20 6" stroke="#1A73B8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Minder kou van onderen</li><li class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5 L9.5 18 L20 6" stroke="#1A73B8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Ook mogelijk bij een lage kruipruimte</li><li class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5 L9.5 18 L20 6" stroke="#1A73B8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Snel aangebracht, zonder breekwerk in huis</li></ul><h3>Wanneer kiest u voor bodemisolatie?</h3><p>Bodemisolatie is een goede keuze als de kruipruimte te laag is voor <a href="vloerisolatie.html">vloerisolatie</a>, of als aanvulling daarop bij vochtproblemen. Welke oplossing het beste past, bekijken we samen tijdens het adviesgesprek.</p><h3>Subsidie</h3><p>Voor deze maatregel kunt u als huiseigenaar subsidie krijgen via de ISDE: een vast bedrag per vierkante meter. Laat u binnen 24 maanden twee of meer isolatiemaatregelen uitvoeren, dan verdubbelt dat bedrag. <a href="subsidie.html">Meer over subsidie</a>.</p></div><div style="display:flex;flex-direction:column;gap:24px"><img class="foto" src="img/artikel-kruipruimte.jpg" alt="Kruipruimte onder een woning"><aside class="zijkaart"><h3>Vrijblijvend advies?</h3><p>Een adviseur komt gratis bij u langs en kijkt wat voor uw woning zinvol is. Inclusief hulp bij de subsidieaanvraag.</p><a href="contact.html" class="btn btn-groen">Adviesgesprek aanvragen</a><a href="tel:+31685235975" class="btn btn-rand">Bel +31 6 85235975</a></aside></div></div></section><section class="sectie"><div class="wrap"><h2 class="sectietitel" style="text-align:left;font-size:clamp(28px,3.4vw,40px);margin-bottom:28px">Veelgestelde vragen</h2><div class="faq"><details><summary>Is bodemisolatie net zo goed als vloerisolatie?</summary><p>Vloerisolatie isoleert meestal beter. Bodemisolatie is vooral een goede oplossing bij een lage of vochtige kruipruimte. We adviseren u eerlijk wat het meeste oplevert.</p></details><details><summary>Hoe lang duurt het?</summary><p>Meestal zijn we binnen een dag klaar.</p></details><details><summary>Kan ik vloer- en bodemisolatie combineren?</summary><p>Ja. Bij een vochtige kruipruimte kan die combinatie extra goed werken.</p></details></div></div></section><section class="sectie"><div class="wrap"><div class="cta"><div><h2>Gratis adviesgesprek bij u thuis</h2><p>Bel ons elke dag van 08:00 tot 20:00, of stuur een WhatsApp. Dat kan 24/7.</p></div>
+<div class="knoppen"><a href="contact.html" class="btn btn-groen">Adviesgesprek aanvragen</a><a href="tel:+31685235975" class="btn btn-wit">Bel +31 6 85235975</a><a href="https://wa.me/31685235975" target="_blank" rel="noopener" class="btn btn-wit">WhatsApp</a></div></div></div></section>
+</main>
+
+<!-- 13. Footer -->
+<footer style="margin-top:96px;background:#EAF4FC;font-size:17px">
+<div class="wrap" style="padding-top:56px;padding-bottom:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px;align-items:start">
+<span style="display:inline-flex;align-items:center;gap:12px"><svg width="52" height="46" viewBox="0 0 72 64" fill="none" aria-hidden="true"><g stroke-linecap="round" stroke-linejoin="round" stroke-width="6.5"><path d="M6 32 L36 7 L66 32" stroke="#0F2A44"/><path d="M15 44 L36 26.5 L57 44" stroke="#1A73B8"/><path d="M24 56 L36 46 L48 56" stroke="#8CC8F2"/></g></svg><span class="logo-woord" style="display:flex;flex-direction:column;line-height:1"><span class="h logo-klein" style="font-size:13px;font-weight:600;letter-spacing:.2em;color:var(--groen)">NEDERLANDSE</span><span class="h logo-tekst" style="font-size:25px;color:var(--zwart);white-space:nowrap;margin-top:4px">Isolatie Groep</span></span></span>
+<div style="display:flex;flex-direction:column;gap:12px"><h3 style="margin:0 0 6px;font-size:20px">Isolatievormen</h3><a href="bodemisolatie.html" style="text-decoration:none">Bodem</a><a href="dakisolatie.html" style="text-decoration:none">Dak</a><a href="spouwmuurisolatie.html" style="text-decoration:none">Spouwmuur</a><a href="vloerisolatie.html" style="text-decoration:none">Vloer</a><a href="isolatieglas.html" style="text-decoration:none">Glas</a></div>
+<div style="display:flex;flex-direction:column;gap:12px"><h3 style="margin:0 0 6px;font-size:20px">Belangrijke pagina's</h3><a href="kennisbank.html" style="text-decoration:none">Kenniscentrum</a><a href="over-ons.html" style="text-decoration:none">Over ons</a><a href="contact.html" style="text-decoration:none">Contact</a></div>
+<div style="display:flex;flex-direction:column;gap:12px"><h3 style="margin:0 0 6px;font-size:20px">Contact</h3><a href="tel:+31685235975" style="text-decoration:none">+31 6 85235975</a><span style="font-size:14px;color:var(--tekst);margin-top:-8px">Elke dag 08:00 – 20:00</span><a href="https://wa.me/31685235975" target="_blank" rel="noopener" style="text-decoration:none">WhatsApp (24/7)</a><a href="mailto:info@nederlandseisolatiegroep.nl" style="text-decoration:none">info@nederlandseisolatiegroep.nl</a><span style="font-size:14px;color:var(--tekst)">KvK: 42106969</span>
+<div style="display:flex;gap:10px;margin-top:6px">
+<a href="https://www.instagram.com/nederlandseisolatiegroep/" target="_blank" rel="noopener" aria-label="Instagram" style="width:40px;height:40px;border-radius:6px;background:var(--groen);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="#fff" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="#fff"/></svg></a>
+<a href="https://www.facebook.com/profile.php?id=61596782371164" target="_blank" rel="noopener" aria-label="Facebook" style="width:40px;height:40px;border-radius:6px;background:var(--groen);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 8 H16.5 V4.5 H14 A4 4 0 0 0 10 8.5 V11 H7.5 V14.5 H10 V21 H13.5 V14.5 H16 L16.5 11 H13.5 V9 A1 1 0 0 1 14 8" fill="#fff"/></svg></a>
+</div>
+</div>
+</div>
+<div class="wrap" style="padding-top:20px;padding-bottom:28px;border-top:1px solid #D3E2EF;display:flex;flex-wrap:wrap;gap:12px 28px;font-size:14px;color:var(--tekst)">
+<span>© 2026 Nederlandse Isolatie Groep, een handelsnaam van Rowan Solutions B.V.</span><a href="privacy.html">Privacyverklaring</a><a href="voorwaarden.html">Voorwaarden</a><a href="cookies.html">Cookies</a>
+</div>
+</footer>
+
+<script>
+(function(){
+  var knoppen=document.querySelectorAll('.navknop');
+  knoppen.forEach(function(k){
+    k.addEventListener('click',function(){
+      var doel=document.getElementById(k.dataset.menu),open=doel.classList.contains('hidden');
+      document.querySelectorAll('.dropdown').forEach(function(d){d.classList.add('hidden')});
+      knoppen.forEach(function(x){x.setAttribute('aria-expanded','false')});
+      if(open){doel.classList.remove('hidden');k.setAttribute('aria-expanded','true');}
+    });
+  });
+  document.querySelectorAll('.dropdown a').forEach(function(a){a.addEventListener('click',function(){a.closest('.dropdown').classList.add('hidden');knoppen.forEach(function(x){x.setAttribute('aria-expanded','false')});});});
+  var hb=document.getElementById('hamburger'),mm=document.getElementById('mobielMenu'),ic=document.getElementById('hbIcoon');
+  var open3='<path d="M4 7 H20 M4 12 H20 M4 17 H20" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>',kruis='<path d="M6 6 L18 18 M18 6 L6 18" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>';
+  function zet(o){mm.classList.toggle('hidden',!o);hb.setAttribute('aria-expanded',o);hb.setAttribute('aria-label',o?'Menu sluiten':'Menu openen');ic.innerHTML=o?kruis:open3;}
+  hb.addEventListener('click',function(){zet(mm.classList.contains('hidden'));});
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){zet(false);});});
+  var nb=document.getElementById('nbForm');if(nb)nb.addEventListener('submit',function(e){e.preventDefault();this.classList.add('hidden');document.getElementById('nbDank').classList.remove('hidden');});
+  var af=document.getElementById('aanvraagForm');if(af)af.addEventListener('submit',function(e){e.preventDefault();this.classList.add('hidden');document.getElementById('aanvraagDank').classList.remove('hidden');});
+})();
+</script>
+</body>
+</html>

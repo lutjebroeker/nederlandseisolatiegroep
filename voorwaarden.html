@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algemene voorwaarden | Nederlandse Isolatie Groep</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 72 64%27%3E%3Cg fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%276.5%27%3E%3Cpath d=%27M6 32 L36 7 L66 32%27 stroke=%27%230F2A44%27/%3E%3Cpath d=%27M15 44 L36 26.5 L57 44%27 stroke=%27%231A73B8%27/%3E%3Cpath d=%27M24 56 L36 46 L48 56%27 stroke=%27%238CC8F2%27/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<style>
+:root{--groen:#1A73B8;--groen-d:#135A92;--groen-l:#EAF4FC;--groen-t:#8CC8F2;--tint:#EEF6FD;--zwart:#0F2A44;--grijs:#F2F7FC;--tekst:#4A5B6C;--lijn:#DCE6F0}
+*{box-sizing:border-box}
+body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:var(--zwart);background:#fff;font-size:17px;line-height:1.55}
+a{color:var(--zwart)}a:hover{color:var(--groen)}
+h1,h2,h3,.h{font-family:'Space Grotesk',system-ui,sans-serif;letter-spacing:-0.02em;font-weight:700}
+.wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px}
+input{font:inherit}
+input:focus{outline:3px solid var(--groen);outline-offset:1px}
+button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:700;padding:15px 26px;border-radius:8px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;font-size:17px;min-height:50px}
+.btn-groen{background:var(--groen);color:#fff}.btn-groen:hover{background:var(--groen-d);color:#fff}
+.btn-zwart{background:var(--zwart);color:#fff}.btn-zwart:hover{background:#000;color:#fff}
+.btn-rand{border:2px solid var(--groen);background:#fff;color:var(--groen)}.btn-rand:hover{background:var(--groen-l)}
+.sectietitel{margin:0;text-align:center;font-size:clamp(32px,4.4vw,56px);line-height:1.08}
+.sectie{padding-top:96px;padding-bottom:0}
+.hidden{display:none!important}
+.dropdown{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--lijn);box-shadow:0 20px 30px -20px rgba(0,0,0,.25);z-index:5}
+.dropdown .wrap{padding-top:24px;padding-bottom:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px 24px}
+.dropdown a{text-decoration:none;display:flex;flex-direction:column;font-weight:700}
+.dropdown a span{font-weight:400;color:var(--tekst);font-size:15px}
+.navknop{min-height:56px;background:transparent;border:0;padding:0;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;color:var(--zwart);cursor:pointer;display:flex;align-items:center;gap:8px}
+.navlink{min-height:56px;display:flex;align-items:center;text-decoration:none;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700}
+.veld{display:flex;flex-direction:column;gap:6px}
+.veld label{font-size:14px;color:var(--tekst)}
+.veld input{height:48px;border:1.5px solid #33475B;border-radius:4px;padding:0 12px;background:#fff;color:var(--zwart)}
+.nb input{height:52px;border:1.5px solid #C8D7E5;border-radius:6px;padding:0 14px}
+.nb label{font-weight:700;font-size:16px;color:var(--zwart)}
+.check{display:flex;gap:8px;align-items:flex-start}
+.check svg{flex:none;margin-top:5px}
+.dienstkaart{border:1.5px solid var(--groen);border-bottom-width:6px;border-radius:12px;padding:44px 36px 36px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.dienstkaart h3{margin:0;font-size:28px;text-align:center}
+.dienstkaart p{margin:0;font-size:18px}
+.pil{margin-top:auto;display:inline-flex;align-items:center;gap:12px;background:#F2F7FC;border:1px solid #D3E2EF;border-radius:8px;padding:12px 22px;color:var(--groen);font-weight:700;text-decoration:none;font-family:'Space Grotesk',sans-serif;font-size:18px}
+.pil:hover{background:var(--groen-l);color:var(--groen-d)}
+.stapkaart{position:relative;background:var(--tint);border-radius:12px;padding:44px 22px 30px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.stapkaart h3{margin:0;font-size:24px;line-height:1.15}
+.stapkaart p{margin:0;font-size:16px;color:#33475B}
+.stapnr{position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;background:var(--groen);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px #fff}
+@media (max-width:1100px) and (min-width:861px){.stappen5{grid-template-columns:repeat(3,minmax(0,1fr))!important;row-gap:40px!important}}
+.artikel img{object-fit:cover;display:block}
+.artikel img,.artikel .foto{width:100%;aspect-ratio:16/9;border-radius:4px;background:#D6E6F4;display:flex;align-items:center;justify-content:center;color:#4A5B6C;font-weight:700;font-size:14px;text-align:center;padding:12px}
+.artikel h3{margin:28px 0 6px;font-size:24px;line-height:1.2}
+.artikel p{margin:0 0 14px;color:#33475B}
+.artikel a{font-weight:700;text-decoration:none;font-family:'Space Grotesk',sans-serif;padding-left:12px}
+.logo-noot{margin-left:4px}
+.hamburger{display:none;flex:none;width:48px;height:48px;border:0;border-radius:8px;background:var(--groen);align-items:center;justify-content:center;cursor:pointer}
+.mobiel-menu{border-bottom:1px solid var(--lijn);background:#fff}
+.mobiel-menu details{border-top:1px solid var(--lijn)}
+.mobiel-menu summary{list-style:none;cursor:pointer;padding:16px 24px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;display:flex;justify-content:space-between;align-items:center}
+.mobiel-menu summary::-webkit-details-marker{display:none}
+.mobiel-menu summary::after{content:'';width:9px;height:9px;border-right:2.4px solid var(--zwart);border-bottom:2.4px solid var(--zwart);transform:rotate(45deg);margin-top:-5px;transition:transform .2s}
+.mobiel-menu details[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.mobiel-menu details a{display:block;padding:10px 24px 10px 40px;text-decoration:none;font-size:17px;color:var(--tekst)}
+.mobiel-menu details[open]{padding-bottom:10px;background:#F6FAFE}
+.mm-link{display:block;border-top:1px solid var(--lijn);padding:16px 24px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;text-decoration:none}
+
+/* ---------- Telefoon & tablet ---------- */
+@media (min-width:861px){.mobiel-menu{display:none!important}}
+@media (max-width:860px){
+  body{font-size:16px}
+  .wrap{padding-left:18px;padding-right:18px}
+  .tb-links,.tb-tijd{display:none!important}
+  .tb-tel{margin:0 auto}
+  .logo-rij{padding-top:12px!important;padding-bottom:12px!important}
+  .logo-noot{display:none}
+  .logo svg{width:46px;height:41px}
+  .logo-tekst{font-size:20px!important}
+  .logo-klein{font-size:11px!important}
+  .hamburger{display:flex}
+  .desk-nav{display:none}
+  .hero-foto{height:240px!important}
+  .hero-foto img{object-position:45% 25%!important}
+  .foto-label{top:12px!important;right:12px!important;left:12px;font-size:12px!important;text-align:center}
+  .hero-kaart{margin:-56px 6px 0!important;padding:26px 22px!important;gap:12px!important}
+  .hero-kaart h1{font-size:38px!important}
+  .hero-kaart .btn{align-self:stretch!important;margin-top:4px!important}
+  .direct{padding:28px 22px!important;gap:14px!important}
+  .direct h2{font-size:26px!important;flex-basis:100%!important}
+  .direct-links{grid-template-columns:1fr!important;gap:12px!important;font-size:18px!important}
+  .sectie{padding-top:64px}
+  .sectietitel{font-size:30px}
+  .stappen5{grid-template-columns:1fr!important;row-gap:36px!important}
+  .stapkaart{flex-direction:row;flex-wrap:wrap;text-align:left;align-items:center;padding:30px 22px 24px;gap:10px 16px}
+  .stapkaart svg{width:40px;height:40px;flex:none}
+  .stapkaart h3{font-size:22px}
+  .stapkaart p{flex-basis:100%;font-size:16px}
+  .stapnr{left:22px;transform:none}
+  .dienstkaart{padding:32px 22px 26px}
+  .dienstkaart h3{font-size:24px}
+  .dienstkaart p{font-size:16px}
+  .pil{font-size:16px;padding:12px 16px}
+  .btn{width:100%}
+  .btn[style*="min-width"]{min-width:0!important}
+  #aanvraag{margin-top:64px!important;padding:40px 0!important}
+  .form-kop{padding:22px 20px!important}
+  .form-kop h2{font-size:24px!important}
+  .review-kaart{padding:26px 22px!important}
+  .bel-blok{padding-left:0!important}
+  .artikel h3{margin-top:18px;font-size:21px}
+  footer{margin-top:64px!important}
+}
+
+/* ---------- Direct naar: uitklapbare kopjes ---------- */
+.dn-lijst{flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.dn-item{background:#fff;border:1.5px solid var(--lijn);border-radius:10px;overflow:hidden}
+.dn-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:var(--zwart)}
+.dn-item summary::-webkit-details-marker{display:none}
+.dn-item summary:hover{color:var(--groen)}
+.dn-item summary:focus-visible{outline:3px solid var(--groen-t);outline-offset:-3px}
+.dn-pijl{flex:none;width:34px;height:34px;border-radius:50%;background:var(--groen-l);display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.dn-item[open] .dn-pijl{transform:rotate(180deg)}
+.dn-tekst{padding:0 22px 22px;display:flex;flex-direction:column;gap:14px}
+.dn-tekst p{margin:0;font-size:18px;color:#33475B}
+.dn-tekst > a{align-self:flex-start;font-weight:700;color:var(--groen);text-decoration:none;font-family:'Space Grotesk',sans-serif}
+.dn-tekst > a:hover{color:var(--groen-d)}
+.dn-top{border:2px solid var(--groen);border-bottom-width:6px;box-shadow:0 14px 30px -20px rgba(26,115,184,.6)}
+.dn-top summary{font-size:26px;padding:22px}
+.dn-badge{display:inline-block;margin-left:10px;vertical-align:middle;background:var(--groen);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.02em;padding:4px 10px;border-radius:99px}
+.dn-punten{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:17px}
+@media (max-width:860px){
+  .dn-lijst{flex-basis:100%}
+  .dn-item summary{font-size:19px;padding:16px 18px}
+  .dn-top summary{font-size:22px}
+  .dn-tekst{padding:0 18px 18px}
+  .dn-tekst p{font-size:16px}
+  .dn-badge{margin:6px 0 0;display:table}
+}
+
+.pkop{background:var(--grijs);border-bottom:1px solid var(--lijn)}
+.pkop .wrap{padding-top:52px;padding-bottom:52px;display:flex;flex-direction:column;gap:16px}
+.kruimel{font-size:14px;color:var(--tekst)}.kruimel a{color:var(--tekst)}
+.pkop h1{margin:0;font-size:clamp(36px,5vw,60px);line-height:1.05}
+.pkop p.intro{margin:0;font-size:clamp(18px,1.8vw,21px);color:#33475B;max-width:760px}
+.pkop .knoppen{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.inh{padding-top:64px}
+.tweekol{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:start}
+.tekst h2{font-size:clamp(26px,3vw,34px);margin:0 0 14px;line-height:1.15}
+.tekst h3{font-size:22px;margin:28px 0 8px}
+.tekst p,.tekst li{color:#33475B;font-size:18px}
+.tekst p{margin:0 0 16px}
+.tekst ul.vink{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column;gap:10px}
+.tekst ol{padding-left:22px}.tekst ol li{margin-bottom:8px}
+.foto{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;display:block}
+.zijkaart{background:var(--tint);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.zijkaart h3{margin:0;font-size:22px}.zijkaart p{margin:0;color:#33475B}
+.faq{display:flex;flex-direction:column;gap:12px;max-width:860px}
+.faq details{border:1.5px solid var(--lijn);border-radius:10px;background:#fff}
+.faq summary{list-style:none;cursor:pointer;padding:18px 22px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';color:var(--groen);font-size:24px;line-height:1}
+.faq details[open] summary::after{content:'–'}
+.faq details p{margin:0;padding:0 22px 20px;color:#33475B}
+.cta{background:var(--zwart);color:#fff;border-radius:12px;padding:clamp(32px,5vw,56px);display:flex;flex-wrap:wrap;gap:24px 40px;align-items:center;justify-content:space-between}
+.cta h2{margin:0 0 6px;font-size:clamp(26px,3vw,36px);color:#fff}.cta p{margin:0;color:#C9DCEC;font-size:18px}
+.cta .knoppen{display:flex;flex-wrap:wrap;gap:12px}
+.cta .btn-wit{background:#fff;color:var(--zwart)}.cta .btn-wit:hover{background:var(--groen-l);color:var(--zwart)}
+.kaarten3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.ckaart{border:1.5px solid var(--lijn);border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:8px;text-decoration:none}
+.ckaart strong{font-family:'Space Grotesk',sans-serif;font-size:22px}
+.ckaart span{color:var(--tekst)}
+.ckaart:hover{border-color:var(--groen)}
+.artikeltekst{max-width:760px}
+.artikeltekst img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;margin:0 0 28px}
+.bron{font-size:14px;color:var(--tekst)}
+@media (max-width:860px){.tweekol{grid-template-columns:1fr;gap:32px}.pkop .wrap{padding-top:36px;padding-bottom:36px}.inh{padding-top:44px}.tekst p,.tekst li{font-size:16px}.cta .knoppen{width:100%}}
+</style>
+</head>
+<body>
+<!-- 1. Topbalk -->
+<div style="background:#EAF4FC;color:#0F2A44;font-size:14px;border-bottom:1px solid #D3E2EF">
+<div class="wrap" style="padding-top:8px;padding-bottom:8px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px">
+<a href="tel:+31685235975" class="tb-tel" style="color:#0F2A44;text-decoration:none;display:flex;align-items:center;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2" stroke="#0F2A44" stroke-width="2" stroke-linejoin="round"/></svg><strong>+31 6 85235975</strong><span class="tb-tijd">&nbsp;elke dag bereikbaar van 08:00 tot 20:00</span></a>
+</div>
+</div>
+
+<!-- 2. Logo -->
+<div style="border-bottom:1px solid var(--lijn)">
+<div class="wrap logo-rij" style="padding-top:18px;padding-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+<div style="display:flex;align-items:center;gap:10px;min-width:0">
+<a href="index.html" aria-label="Nederlandse Isolatie Groep, naar home" class="logo" style="display:inline-flex;align-items:center;gap:12px;text-decoration:none"><svg width="58" height="52" viewBox="0 0 72 64" fill="none" aria-hidden="true"><g stroke-linecap="round" stroke-linejoin="round" stroke-width="6.5"><path d="M6 32 L36 7 L66 32" stroke="#0F2A44"/><path d="M15 44 L36 26.5 L57 44" stroke="#1A73B8"/><path d="M24 56 L36 46 L48 56" stroke="#8CC8F2"/></g></svg><span class="logo-woord" style="display:flex;flex-direction:column;line-height:1"><span class="h logo-klein" style="font-size:13px;font-weight:600;letter-spacing:.2em;color:var(--groen)">NEDERLANDSE</span><span class="h logo-tekst" style="font-size:25px;color:var(--zwart);white-space:nowrap;margin-top:4px">Isolatie Groep</span></span></a>
+</div>
+<button type="button" id="hamburger" class="hamburger" aria-expanded="false" aria-controls="mobielMenu" aria-label="Menu openen">
+<svg id="hbIcoon" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7 H20 M4 12 H20 M4 17 H20" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+</button>
+</div>
+<div id="mobielMenu" class="mobiel-menu hidden">
+<details><summary>Isolatie</summary><a href="spouwmuurisolatie.html">Spouwmuurisolatie</a><a href="vloerisolatie.html">Vloerisolatie</a><a href="bodemisolatie.html">Bodemisolatie</a><a href="dakisolatie.html">Dakisolatie</a><a href="isolatieglas.html">HR++ en triple glas</a></details>
+<details><summary>Services</summary><a href="contact.html">Gratis adviesgesprek</a><a href="subsidie.html">Hulp bij subsidie</a><a href="werkwijze.html">Onze werkwijze</a></details>
+<details><summary>Over ons</summary><a href="over-ons.html">Over ons</a><a href="werkwijze.html">Onze werkwijze</a></details>
+<a class="mm-link" href="subsidie.html">Subsidie</a>
+<a class="mm-link" href="contact.html">Contact</a>
+<a class="mm-link" href="kennisbank.html">Kennisbank</a>
+<div style="padding:20px 24px 24px;display:flex;flex-direction:column;gap:10px">
+<a href="contact.html" class="btn btn-groen">Adviesgesprek aanvragen</a>
+<a href="tel:+31685235975" class="btn btn-rand">Bel +31 6 85235975</a>
+<a href="https://wa.me/31685235975" target="_blank" rel="noopener" class="btn btn-rand">WhatsApp ons (24/7)</a>
+</div>
+</div>
+</div>
+
+<!-- 3. Menu -->
+<nav aria-label="Hoofdmenu" class="desk-nav" style="border-bottom:1px solid var(--lijn);position:relative;background:#fff">
+<div class="wrap" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 36px">
+<div style="display:flex;flex-wrap:wrap;gap:4px 44px">
+<button type="button" class="navknop" data-menu="m-isolatie" aria-expanded="false">Isolatie <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9 L12 15 L18 9" stroke="#0F2A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<button type="button" class="navknop" data-menu="m-services" aria-expanded="false">Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9 L12 15 L18 9" stroke="#0F2A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<button type="button" class="navknop" data-menu="m-over" aria-expanded="false">Over ons <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9 L12 15 L18 9" stroke="#0F2A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:4px 44px">
+<a href="subsidie.html" class="navlink">Subsidie</a>
+<a href="contact.html" class="navlink">Contact</a>
+<a href="kennisbank.html" class="navlink">Kennisbank</a>
+</div>
+</div>
+<div id="m-isolatie" class="dropdown hidden"><div class="wrap">
+<a href="spouwmuurisolatie.html">Spouwmuurisolatie<span>Isolatie in de muur</span></a>
+<a href="vloerisolatie.html">Vloerisolatie<span>Warme vloer via de kruipruimte</span></a>
+<a href="bodemisolatie.html">Bodemisolatie<span>Minder vocht en kou van onderen</span></a>
+<a href="dakisolatie.html">Dakisolatie<span>Schuin en plat dak</span></a>
+<a href="isolatieglas.html">HR++ en triple glas<span>Isolerend glas</span></a>
+</div></div>
+<div id="m-services" class="dropdown hidden"><div class="wrap">
+<a href="contact.html">Gratis adviesgesprek<span>Bij u thuis, vrijblijvend</span></a>
+<a href="subsidie.html">Hulp bij subsidie<span>Wij zoeken uit wat voor u geldt</span></a>
+<a href="werkwijze.html">Onze werkwijze<span>Van gesprek tot isolatie</span></a>
+</div></div>
+<div id="m-over" class="dropdown hidden"><div class="wrap">
+<a href="over-ons.html">Over Nederlandse Isolatie Groep<span>Wie we zijn en hoe we werken</span></a>
+<a href="werkwijze.html">Onze werkwijze<span>Van adviesgesprek tot isolatie</span></a>
+<a href="contact.html">Contact<span>Bel, mail of vraag advies aan</span></a>
+</div></div>
+</nav>
+
+<main>
+<section class="pkop"><div class="wrap"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a> › Algemene voorwaarden</nav><h1>Algemene voorwaarden</h1><p class="intro">De voorwaarden die gelden voor onze offertes en opdrachten.</p></div></section>
+<section class="inh"><div class="wrap"><div class="tekst artikeltekst"><p class="datum">Versie 22 november 2026</p>
+
+<div class="kader">
+<p><strong>Nederlandse Isolatie Groep</strong> is een handelsnaam van <strong>Rowan Solutions B.V.</strong></p>
+<p>KvK-nummer: 42106969 · E-mail: <a href="mailto:info@nederlandseisolatiegroep.nl">info@nederlandseisolatiegroep.nl</a> · Telefoon: <a href="tel:+31685235975">+31 6 85235975</a></p>
+<p>Ons vestigingsadres staat op uw offerte en in het Handelsregister van de KvK.</p>
+</div>
+
+<h2>Artikel 1 – Begrippen</h2>
+<ul>
+<li><strong>Wij / ondernemer:</strong> Rowan Solutions B.V., handelend onder de naam Nederlandse Isolatie Groep.</li>
+<li><strong>U / klant:</strong> de persoon die met ons een overeenkomst sluit of een offerte van ons ontvangt.</li>
+<li><strong>Consument:</strong> een klant die handelt voor doeleinden die buiten zijn bedrijf of beroep vallen.</li>
+<li><strong>Werkzaamheden:</strong> het leveren en aanbrengen van isolatie en isolatieglas, en alles wat daarbij hoort.</li>
+<li><strong>Bedenktijd:</strong> de termijn waarbinnen een consument de overeenkomst zonder opgave van redenen kan ontbinden.</li>
+</ul>
+
+<h2>Artikel 2 – Toepasselijkheid</h2>
+<ol>
+<li>Deze voorwaarden gelden voor al onze offertes en overeenkomsten.</li>
+<li>Wij sturen deze voorwaarden met de offerte mee of overhandigen ze voordat de overeenkomst wordt gesloten.</li>
+<li>Afwijkende afspraken gelden alleen als wij die schriftelijk (ook per e-mail) met u hebben vastgelegd.</li>
+<li>Als een bepaling in deze voorwaarden niet geldig is, blijven de andere bepalingen gewoon van kracht.</li>
+</ol>
+
+<h2>Artikel 3 – Adviesgesprek en offerte</h2>
+<ol>
+<li>Het adviesgesprek bij u thuis is gratis en vrijblijvend.</li>
+<li>In de offerte staat duidelijk welke werkzaamheden wij uitvoeren, met welke materialen, de totaalprijs inclusief btw, de verwachte planning en de betalingsvoorwaarden.</li>
+<li>Een offerte is 30 dagen geldig, tenzij in de offerte een andere termijn staat.</li>
+<li>De offerte is gebaseerd op wat wij tijdens het adviesgesprek kunnen zien en op de informatie die u ons geeft. Blijkt de situatie tijdens de uitvoering wezenlijk anders (bijvoorbeeld een onbereikbare of te lage kruipruimte, of een spouw die niet geschikt is), dan overleggen wij eerst met u. Meerwerk voeren wij alleen uit nadat u daar vooraf mee heeft ingestemd.</li>
+<li>Kennelijke vergissingen of schrijffouten in de offerte binden ons niet.</li>
+</ol>
+
+<h2>Artikel 4 – Totstandkoming van de overeenkomst</h2>
+<ol>
+<li>De overeenkomst komt tot stand als u de offerte ondertekent of schriftelijk (ook per e-mail) akkoord geeft.</li>
+<li>Als de overeenkomst bij u thuis wordt gesloten, krijgt u direct een kopie of bevestiging van de getekende overeenkomst op papier of, als u daarmee instemt, op een andere duurzame gegevensdrager zoals e-mail.</li>
+</ol>
+
+<h2>Artikel 5 – Bedenktijd (herroepingsrecht) voor consumenten</h2>
+<ol>
+<li>Sluit u als consument de overeenkomst bij u thuis of op afstand (bijvoorbeeld via telefoon, e-mail of onze website)? Dan heeft u het recht om de overeenkomst binnen 14 dagen zonder opgave van redenen te ontbinden.</li>
+<li>De bedenktijd gaat in op de dag na het sluiten van de overeenkomst en eindigt 14 dagen daarna.</li>
+<li>Wij beginnen in principe pas met de werkzaamheden na afloop van de bedenktijd. Wilt u dat wij eerder beginnen? Dan kan dat alleen als u daar uitdrukkelijk en schriftelijk om vraagt.</li>
+<li>Herroept u de overeenkomst nadat u ons op uw uitdrukkelijk verzoek tijdens de bedenktijd heeft laten beginnen? Dan betaalt u alleen een bedrag dat in verhouding staat tot het deel van de werkzaamheden dat al is uitgevoerd op het moment van herroepen.</li>
+<li>Zijn de werkzaamheden op uw uitdrukkelijk verzoek binnen de bedenktijd volledig uitgevoerd, en heeft u vooraf verklaard dat u weet dat u daarmee uw herroepingsrecht verliest? Dan kunt u de overeenkomst niet meer herroepen.</li>
+<li>U herroept door ons binnen de bedenktijd een ondubbelzinnige verklaring te sturen, bijvoorbeeld per e-mail naar <a href="mailto:info@nederlandseisolatiegroep.nl">info@nederlandseisolatiegroep.nl</a>. U mag daarvoor het modelformulier onderaan deze voorwaarden gebruiken, maar dat is niet verplicht.</li>
+<li>Heeft u al iets betaald? Dan betalen wij dat binnen 14 dagen na ontvangst van uw herroeping terug, op dezelfde manier waarop u heeft betaald, met aftrek van een eventueel bedrag zoals bedoeld in lid 4.</li>
+</ol>
+
+<h2>Artikel 6 – Uitvoering van de werkzaamheden</h2>
+<ol>
+<li>Wij voeren de werkzaamheden vakkundig en zorgvuldig uit, met materialen die voldoen aan de geldende eisen.</li>
+<li>Wij spreken de uitvoeringsdatum in overleg met u af. Een opgegeven datum is een streefdatum. Kunnen wij die niet halen, dan laten wij u dat zo snel mogelijk weten en plannen wij in overleg een nieuwe datum. Bij een aanzienlijke vertraging mag u de overeenkomst ontbinden.</li>
+<li>Bij spouwmuur- en dakisolatie voeren wij vooraf een natuurcheck uit volgens de natuurwetgeving (Omgevingswet), om te voorkomen dat vleermuizen of vogels worden verstoord. Blijkt dat de werkzaamheden daardoor op een later moment of onder voorwaarden moeten plaatsvinden, dan overleggen wij dat met u. Is uitvoering niet toegestaan, dan kunnen u en wij de overeenkomst kosteloos ontbinden.</li>
+<li>U zorgt ervoor dat wij op de afgesproken dag bij de te isoleren delen kunnen, bijvoorbeeld door het luik naar de kruipruimte vrij te maken en spullen op zolder te verplaatsen. U zorgt ook voor stroom en water als dat voor de werkzaamheden nodig is.</li>
+<li>Kunnen wij op de afgesproken dag door uw toedoen niet aan het werk, en heeft u de afspraak niet uiterlijk 2 werkdagen van tevoren afgezegd? Dan mogen wij de redelijke kosten die wij daardoor maken, aan u doorberekenen.</li>
+<li>Wij mogen voor de uitvoering vakkundige monteurs of partners inschakelen. Wij blijven voor hun werk verantwoordelijk.</li>
+<li>Na afloop laten wij de werkplek netjes en bezemschoon achter en nemen wij ons afval mee.</li>
+</ol>
+
+<h2>Artikel 7 – Prijs en betaling</h2>
+<ol>
+<li>Alle prijzen voor consumenten zijn inclusief btw.</li>
+<li>Als consument hoeft u nooit meer dan 50% van de prijs vooruit te betalen.</li>
+<li>Het (resterende) bedrag betaalt u na oplevering, binnen de termijn die op de factuur staat. Die termijn is minimaal 14 dagen.</li>
+<li>Betaalt u niet op tijd, dan sturen wij u eerst een gratis betalingsherinnering met een termijn van 14 dagen. Pas als u daarna nog niet heeft betaald, mogen wij de wettelijke rente en de wettelijk toegestane incassokosten in rekening brengen.</li>
+</ol>
+
+<h2>Artikel 8 – Subsidie</h2>
+<ol>
+<li>Wij informeren u graag over subsidiemogelijkheden, zoals de ISDE-regeling, en helpen u op verzoek met de aanvraag.</li>
+<li>Of u subsidie krijgt en hoeveel, beslist de Rijksdienst voor Ondernemend Nederland (RVO) op basis van de geldende voorwaarden. Wij kunnen dat daarom niet garanderen. Het subsidiebedrag in onze offerte is een inschatting.</li>
+<li>De aanvraag gebeurt op uw naam. U blijft verantwoordelijk voor de juistheid van de gegevens die u aanlevert.</li>
+<li>Wordt de subsidie geheel of gedeeltelijk afgewezen, dan blijft de afgesproken prijs voor de werkzaamheden verschuldigd. Dit geldt niet als de afwijzing komt doordat wij een fout hebben gemaakt, bijvoorbeeld door materialen te gebruiken die niet voldoen aan de eisen die wij u hebben toegezegd.</li>
+</ol>
+
+<h2>Artikel 9 – Garantie en oplevering</h2>
+<ol>
+<li>Wij staan ervoor in dat de werkzaamheden en materialen voldoen aan de overeenkomst en aan wat u daar redelijkerwijs van mag verwachten.</li>
+<li>Een eventuele extra garantie die in de offerte staat, beperkt uw wettelijke rechten niet.</li>
+<li>De garantie geldt niet voor schade die ontstaat door verkeerd gebruik, door werkzaamheden van anderen na oplevering, of door oorzaken buiten de geïsoleerde delen, zoals bestaande lekkages, scheuren of vochtproblemen die al aanwezig waren.</li>
+</ol>
+
+<h2>Artikel 10 – Klachten</h2>
+<ol>
+<li>Bent u ergens niet tevreden over? Meld dit dan zo snel mogelijk, liefst binnen 2 maanden nadat u het gebrek heeft ontdekt, per e-mail of telefonisch. Omschrijf de klacht zo duidelijk mogelijk en stuur eventueel foto's mee.</li>
+<li>Wij reageren binnen 14 dagen op uw klacht. Hebben wij meer tijd nodig, dan laten wij u dat binnen die termijn weten, met een indicatie van wanneer u een inhoudelijk antwoord krijgt.</li>
+<li>Is de klacht terecht, dan herstellen wij het gebrek kosteloos, of zoeken wij in overleg met u een andere passende oplossing.</li>
+</ol>
+
+<h2>Artikel 11 – Aansprakelijkheid</h2>
+<ol>
+<li>Wij zijn aansprakelijk voor schade die wij of onze monteurs tijdens de werkzaamheden aan uw woning of eigendommen veroorzaken.</li>
+<li>Wij zijn niet aansprakelijk voor schade die is ontstaan doordat u ons onjuiste of onvolledige informatie heeft gegeven, of voor gebreken die al aanwezig waren en die wij redelijkerwijs niet konden zien.</li>
+<li>Deze bepaling beperkt geen rechten die u als consument op grond van de wet heeft.</li>
+</ol>
+
+<h2>Artikel 12 – Overmacht</h2>
+<ol>
+<li>Kunnen wij door overmacht (bijvoorbeeld extreem weer, ziekte van monteurs of het niet beschikbaar zijn van materialen) de werkzaamheden niet op de afgesproken datum uitvoeren, dan plannen wij in overleg met u een nieuwe datum.</li>
+<li>Duurt de overmacht langer dan 2 maanden, dan mogen u en wij de overeenkomst ontbinden. U betaalt dan alleen voor wat al is uitgevoerd.</li>
+</ol>
+
+<h2>Artikel 13 – Privacy</h2>
+<p>Wij gaan zorgvuldig om met uw persoonsgegevens. Hoe wij dat doen, leest u in onze <a href="privacy.html">privacyverklaring</a>.</p>
+
+<h2>Artikel 14 – Toepasselijk recht en geschillen</h2>
+<ol>
+<li>Op alle overeenkomsten is Nederlands recht van toepassing.</li>
+<li>Wij lossen een verschil van mening het liefst samen met u op. Lukt dat niet, dan kan het geschil worden voorgelegd aan de bevoegde rechter. Als consument kunt u ook altijd terecht bij de rechter in de plaats waar u woont.</li>
+</ol>
+
+<h2>Modelformulier voor herroeping</h2>
+<div class="formulier">
+<p><em>Vul dit formulier alleen in en stuur het alleen terug als u de overeenkomst wilt herroepen.</em></p>
+<p>Aan: Rowan Solutions B.V., handelend onder de naam Nederlandse Isolatie Groep<br>E-mail: info@nederlandseisolatiegroep.nl</p>
+<p>Ik deel u hierbij mede dat ik onze overeenkomst betreffende de uitvoering van de volgende dienst herroep:</p>
+<p>…………………………………………………………</p>
+<p>Gesloten op: ………………………</p>
+<p>Naam: ………………………………………</p>
+<p>Adres: ………………………………………</p>
+<p>Handtekening (alleen als dit formulier op papier wordt ingediend): ………………………</p>
+<p>Datum: ………………………</p>
+</div>
+</div></div></section>
+</main>
+
+<!-- 13. Footer -->
+<footer style="margin-top:96px;background:#EAF4FC;font-size:17px">
+<div class="wrap" style="padding-top:56px;padding-bottom:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px;align-items:start">
+<span style="display:inline-flex;align-items:center;gap:12px"><svg width="52" height="46" viewBox="0 0 72 64" fill="none" aria-hidden="true"><g stroke-linecap="round" stroke-linejoin="round" stroke-width="6.5"><path d="M6 32 L36 7 L66 32" stroke="#0F2A44"/><path d="M15 44 L36 26.5 L57 44" stroke="#1A73B8"/><path d="M24 56 L36 46 L48 56" stroke="#8CC8F2"/></g></svg><span class="logo-woord" style="display:flex;flex-direction:column;line-height:1"><span class="h logo-klein" style="font-size:13px;font-weight:600;letter-spacing:.2em;color:var(--groen)">NEDERLANDSE</span><span class="h logo-tekst" style="font-size:25px;color:var(--zwart);white-space:nowrap;margin-top:4px">Isolatie Groep</span></span></span>
+<div style="display:flex;flex-direction:column;gap:12px"><h3 style="margin:0 0 6px;font-size:20px">Isolatievormen</h3><a href="bodemisolatie.html" style="text-decoration:none">Bodem</a><a href="dakisolatie.html" style="text-decoration:none">Dak</a><a href="spouwmuurisolatie.html" style="text-decoration:none">Spouwmuur</a><a href="vloerisolatie.html" style="text-decoration:none">Vloer</a><a href="isolatieglas.html" style="text-decoration:none">Glas</a></div>
+<div style="display:flex;flex-direction:column;gap:12px"><h3 style="margin:0 0 6px;font-size:20px">Belangrijke pagina's</h3><a href="kennisbank.html" style="text-decoration:none">Kenniscentrum</a><a href="over-ons.html" style="text-decoration:none">Over ons</a><a href="contact.html" style="text-decoration:none">Contact</a></div>
+<div style="display:flex;flex-direction:column;gap:12px"><h3 style="margin:0 0 6px;font-size:20px">Contact</h3><a href="tel:+31685235975" style="text-decoration:none">+31 6 85235975</a><span style="font-size:14px;color:var(--tekst);margin-top:-8px">Elke dag 08:00 – 20:00</span><a href="https://wa.me/31685235975" target="_blank" rel="noopener" style="text-decoration:none">WhatsApp (24/7)</a><a href="mailto:info@nederlandseisolatiegroep.nl" style="text-decoration:none">info@nederlandseisolatiegroep.nl</a><span style="font-size:14px;color:var(--tekst)">KvK: 42106969</span>
+<div style="display:flex;gap:10px;margin-top:6px">
+<a href="https://www.instagram.com/nederlandseisolatiegroep/" target="_blank" rel="noopener" aria-label="Instagram" style="width:40px;height:40px;border-radius:6px;background:var(--groen);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="#fff" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="#fff"/></svg></a>
+<a href="https://www.facebook.com/profile.php?id=61596782371164" target="_blank" rel="noopener" aria-label="Facebook" style="width:40px;height:40px;border-radius:6px;background:var(--groen);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 8 H16.5 V4.5 H14 A4 4 0 0 0 10 8.5 V11 H7.5 V14.5 H10 V21 H13.5 V14.5 H16 L16.5 11 H13.5 V9 A1 1 0 0 1 14 8" fill="#fff"/></svg></a>
+</div>
+</div>
+</div>
+<div class="wrap" style="padding-top:20px;padding-bottom:28px;border-top:1px solid #D3E2EF;display:flex;flex-wrap:wrap;gap:12px 28px;font-size:14px;color:var(--tekst)">
+<span>© 2026 Nederlandse Isolatie Groep, een handelsnaam van Rowan Solutions B.V.</span><a href="privacy.html">Privacyverklaring</a><a href="voorwaarden.html">Voorwaarden</a><a href="cookies.html">Cookies</a>
+</div>
+</footer>
+
+<script>
+(function(){
+  var knoppen=document.querySelectorAll('.navknop');
+  knoppen.forEach(function(k){
+    k.addEventListener('click',function(){
+      var doel=document.getElementById(k.dataset.menu),open=doel.classList.contains('hidden');
+      document.querySelectorAll('.dropdown').forEach(function(d){d.classList.add('hidden')});
+      knoppen.forEach(function(x){x.setAttribute('aria-expanded','false')});
+      if(open){doel.classList.remove('hidden');k.setAttribute('aria-expanded','true');}
+    });
+  });
+  document.querySelectorAll('.dropdown a').forEach(function(a){a.addEventListener('click',function(){a.closest('.dropdown').classList.add('hidden');knoppen.forEach(function(x){x.setAttribute('aria-expanded','false')});});});
+  var hb=document.getElementById('hamburger'),mm=document.getElementById('mobielMenu'),ic=document.getElementById('hbIcoon');
+  var open3='<path d="M4 7 H20 M4 12 H20 M4 17 H20" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>',kruis='<path d="M6 6 L18 18 M18 6 L6 18" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>';
+  function zet(o){mm.classList.toggle('hidden',!o);hb.setAttribute('aria-expanded',o);hb.setAttribute('aria-label',o?'Menu sluiten':'Menu openen');ic.innerHTML=o?kruis:open3;}
+  hb.addEventListener('click',function(){zet(mm.classList.contains('hidden'));});
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){zet(false);});});
+  var nb=document.getElementById('nbForm');if(nb)nb.addEventListener('submit',function(e){e.preventDefault();this.classList.add('hidden');document.getElementById('nbDank').classList.remove('hidden');});
+  var af=document.getElementById('aanvraagForm');if(af)af.addEventListener('submit',function(e){e.preventDefault();this.classList.add('hidden');document.getElementById('aanvraagDank').classList.remove('hidden');});
+})();
+</script>
+</body>
+</html>
