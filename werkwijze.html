@@ -312,8 +312,25 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-of
   function zet(o){mm.classList.toggle('hidden',!o);hb.setAttribute('aria-expanded',o);hb.setAttribute('aria-label',o?'Menu sluiten':'Menu openen');ic.innerHTML=o?kruis:open3;}
   hb.addEventListener('click',function(){zet(mm.classList.contains('hidden'));});
   mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){zet(false);});});
-  var nb=document.getElementById('nbForm');if(nb)nb.addEventListener('submit',function(e){e.preventDefault();this.classList.add('hidden');document.getElementById('nbDank').classList.remove('hidden');});
-  var af=document.getElementById('aanvraagForm');if(af)af.addEventListener('submit',function(e){e.preventDefault();this.classList.add('hidden');document.getElementById('aanvraagDank').classList.remove('hidden');});
+  // Formulieren: versturen via Web3Forms naar info@nederlandseisolatiegroep.nl (geen cookies).
+  // Zolang W3F_KEY leeg is, opent het mailprogramma van de bezoeker met de aanvraag erin.
+  var W3F_KEY='';
+  function velden(f){var d={};f.querySelectorAll('input').forEach(function(i){var l=i.id?f.querySelector('label[for="'+i.id+'"]'):null;l=l||i.closest('label');var naam=(l?l.textContent:i.id||i.name||'veld').replace(/\s*\*\s*$/,'').trim();d[naam]=i.type==='checkbox'?(i.checked?'Ja':'Nee'):i.value.trim();});return d;}
+  function verstuur(f,onderwerp,dankId){
+    var d=velden(f),knop=f.querySelector('button[type="submit"]'),tekst=knop?knop.textContent:'';
+    function klaar(){f.classList.add('hidden');var dk=document.getElementById(dankId);if(dk)dk.classList.remove('hidden');}
+    function viaMail(){var r=Object.keys(d).map(function(k){return k+': '+d[k];});window.location.href='mailto:info@nederlandseisolatiegroep.nl?subject='+encodeURIComponent(onderwerp)+'&body='+encodeURIComponent(r.join('\n'));klaar();}
+    if(!W3F_KEY){viaMail();return;}
+    if(knop){knop.disabled=true;knop.textContent='Bezig met versturen…';}
+    var data={access_key:W3F_KEY,subject:onderwerp,from_name:'Website Nederlandse Isolatie Groep'};
+    Object.keys(d).forEach(function(k){data[k]=d[k];});
+    if(d['E-mailadres'])data.replyto=d['E-mailadres'];
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json();}).then(function(j){if(j&&j.success){klaar();}else{throw new Error('mislukt');}})
+      .catch(function(){if(knop){knop.disabled=false;knop.textContent=tekst;}viaMail();});
+  }
+  var nb=document.getElementById('nbForm');if(nb)nb.addEventListener('submit',function(e){e.preventDefault();verstuur(this,'Nieuwe inschrijving nieuwsbrief','nbDank');});
+  var af=document.getElementById('aanvraagForm');if(af)af.addEventListener('submit',function(e){e.preventDefault();verstuur(this,'Nieuwe aanvraag adviesgesprek via de website','aanvraagDank');});
 })();
 </script>
 </body>
