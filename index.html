@@ -341,7 +341,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-of
 <div class="wrap">
 <div style="background:var(--grijs);border-radius:12px;padding:clamp(32px,5vw,64px)">
 <form id="nbForm" class="nb" style="display:flex;flex-direction:column;gap:22px">
-<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 <div>
 <h2 style="margin:0 0 10px;font-size:clamp(28px,3.4vw,44px)">Slim besparen op uw energierekening?</h2>
 <p style="margin:0;font-size:20px;color:#33475B">Schrijf u in voor onze nieuwsbrief en blijf op de hoogte van subsidies en bespaartips.</p>
@@ -358,7 +357,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-of
 <li class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5 L9.5 18 L20 6" stroke="#1A73B8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Uitschrijven wanneer u wilt</li>
 </ul>
 </form>
-<p id="nbDank" role="status" class="h hidden" style="margin:0;font-size:28px">U bent ingeschreven. Bedankt!</p>
+<div id="nbDank" role="status" class="hidden" style="display:flex;flex-direction:column;gap:8px"><p class="h" style="margin:0;font-size:28px">Nog één stap: verstuur de e-mail</p><p style="margin:0;font-size:18px;color:#33475B">Uw mailprogramma opent met uw aanmelding erin. Klik op verzenden om u in te schrijven.</p></div>
 </div>
 </div>
 </section>
@@ -425,7 +424,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-of
 <p style="margin:0;font-size:18px;line-height:1.4">We komen graag bij u langs voor een vrijblijvend adviesgesprek en een gratis offerte op maat.</p>
 </div>
 <form id="aanvraagForm" style="padding:24px 16px 32px;display:flex;flex-direction:column;gap:14px">
-<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 <div class="veld"><label for="a-vn">Voornaam</label><input id="a-vn" required autocomplete="given-name"></div>
 <div class="veld"><label for="a-tv">Tussenv.</label><input id="a-tv"></div>
 <div class="veld"><label for="a-an">Achternaam</label><input id="a-an" required autocomplete="family-name"></div>
@@ -440,8 +438,9 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-of
 <button type="submit" class="btn btn-groen" style="margin-top:8px">Verstuur aanvraag</button>
 </form>
 <div id="aanvraagDank" role="status" class="hidden" style="padding:32px 44px;display:flex;flex-direction:column;gap:10px">
-<h3 style="margin:0;font-size:26px">Bedankt voor uw aanvraag!</h3>
-<p style="margin:0;color:var(--tekst)">We nemen zo snel mogelijk contact met u op om een afspraak te plannen.</p>
+<h3 style="margin:0;font-size:26px">Nog één stap: verstuur de e-mail</h3>
+<p style="margin:0;color:var(--tekst)">Uw mailprogramma opent met uw aanvraag erin. Klik daar op verzenden, dan nemen we zo snel mogelijk contact met u op.</p>
+<p style="margin:0;color:var(--tekst)">Opent er niets? Mail naar <a href="mailto:info@nederlandseisolatiegroep.nl">info@nederlandseisolatiegroep.nl</a> of bel <a href="tel:+31685235975">06 85 23 59 75</a>.</p>
 </div>
 </div>
 <div style="flex:1 1 380px;max-width:530px;display:flex;flex-direction:column;gap:32px">
@@ -504,29 +503,18 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-of
   function zet(o){mm.classList.toggle('hidden',!o);hb.setAttribute('aria-expanded',o);hb.setAttribute('aria-label',o?'Menu sluiten':'Menu openen');ic.innerHTML=o?kruis:open3;}
   hb.addEventListener('click',function(){zet(mm.classList.contains('hidden'));});
   mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){zet(false);});});
-  var ENDPOINT='https://formsubmit.co/ajax/info@nederlandseisolatiegroep.nl';
+  var MAIL='info@nederlandseisolatiegroep.nl';
   function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
-  function verstuur(form,data,dankId){
-    var knop=form.querySelector('button[type=submit]'),tekst=knop.textContent,fout=form.querySelector('.form-fout');
-    if(fout)fout.remove();
-    knop.disabled=true;knop.textContent='Bezig met versturen…';
-    data._template='table';data._captcha='false';data._honey=form.querySelector('[name=_honey]').value;
-    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
-      .then(function(r){return r.json().then(function(j){if(!r.ok||String(j.success)!=='true')throw new Error(j.message||r.status);});})
-      .then(function(){form.classList.add('hidden');document.getElementById(dankId).classList.remove('hidden');})
-      .catch(function(){
-        knop.disabled=false;knop.textContent=tekst;
-        var p=document.createElement('p');p.className='form-fout';p.setAttribute('role','alert');
-        p.style.cssText='margin:0;color:#B42318;font-size:16px;font-weight:700';
-        p.innerHTML='Versturen is niet gelukt. Probeer het opnieuw of bel ons op <a href="tel:+31685235975" style="color:#B42318">06 85 23 59 75</a>.';
-        knop.insertAdjacentElement('afterend',p);
-      });
+  function mail(onderwerp,regels){
+    window.location.href='mailto:'+MAIL+'?subject='+encodeURIComponent(onderwerp)+'&body='+encodeURIComponent(regels.join('\n'));
   }
   document.getElementById('nbForm').addEventListener('submit',function(e){e.preventDefault();
-    verstuur(this,{_subject:'Nieuwsbrief-inschrijving via website',Type:'Nieuwsbrief',Voornaam:v('nb-vn'),Achternaam:v('nb-an'),email:v('nb-em')},'nbDank');});
+    mail('Aanmelding nieuwsbrief',['Graag meld ik mij aan voor de nieuwsbrief.','','Voornaam: '+v('nb-vn'),'Achternaam: '+v('nb-an'),'E-mail: '+v('nb-em')]);
+    this.classList.add('hidden');document.getElementById('nbDank').classList.remove('hidden');});
   document.getElementById('aanvraagForm').addEventListener('submit',function(e){e.preventDefault();
     var naam=[v('a-vn'),v('a-tv'),v('a-an')].filter(Boolean).join(' ');
-    verstuur(this,{_subject:'Nieuwe aanvraag adviesgesprek: '+naam,Type:'Aanvraag adviesgesprek',Naam:naam,Telefoon:v('a-tel'),email:v('a-em'),Postcode:v('a-pc'),Huisnummer:(v('a-nr')+' '+v('a-tx')).trim(),Nieuwsbrief:document.getElementById('a-nb').checked?'Ja':'Nee',Toestemming_contact:'Ja'},'aanvraagDank');});
+    mail('Aanvraag adviesgesprek: '+naam,['Graag plan ik een gratis adviesgesprek.','','Naam: '+naam,'Telefoon: '+v('a-tel'),'E-mail: '+v('a-em'),'Postcode: '+v('a-pc'),'Huisnummer: '+(v('a-nr')+' '+v('a-tx')).trim(),'Nieuwsbrief: '+(document.getElementById('a-nb').checked?'Ja':'Nee')]);
+    this.classList.add('hidden');document.getElementById('aanvraagDank').classList.remove('hidden');});
 })();
 </script>
 </body>
