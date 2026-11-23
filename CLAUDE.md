@@ -11,6 +11,8 @@ Statische website van nederlandseisolatiegroep.nl. Geen build-stap, geen framewo
 - 17 pagina's in de hoofdmap: `index.html`, de isolatiepagina's (spouwmuur, vloer, bodem, dak, isolatieglas), `subsidie`, `werkwijze`, `over-ons`, `contact`, `kennisbank` + 3 artikelen (`kosten-spouwmuurisolatie`, `kruipruimte-isoleren`, `wat-levert-isolatie-op`), en de juridische pagina's `privacy`, `voorwaarden`, `cookies`.
 - Header, footer en het script onderaan staan in elke pagina apart. Pas je iets aan in de header, footer of het script, doe dat dan in alle 17 bestanden.
 - Navigatie: elk menu-item en elke knop gaat naar een eigen pagina. Alleen de uitklapkopjes bij "Direct naar" op de homepage klappen open. "Isolatie", "Services" en "Over ons" zijn uitklapmenu's.
+- Subsidiecheck: `subsidiecheck/index.html`, bereikbaar op `/subsidiecheck`. Losse landingspagina zonder menu (voor advertenties). Knoppen ernaartoe: menu (naast Subsidie), homepage-hero, blok op de subsidiepagina en de 5 isolatiepagina's, en een vaste knop onderin op mobiel (alle pagina's). Advertentielinks: `/subsidiecheck?bron=facebook`, optioneel `&type=tussenwoning|hoekwoning|twee-onder-een-kap|vrijstaand|appartement` en `&utm_campaign=...`.
+- ISDE-bedragen in de subsidiecheck staan in `RATES` (bron: RVO, isolatiemaatregelen woningeigenaren, uitvoering 2025 of later). Gemiddelde oppervlaktes per woningtype in `AREA`. Controleer de bedragen bij een wijziging van de ISDE.
 - Media: `img/` (6 foto's), `video/nig-5-stappen.mp4` (uitlegvideo met voice-over) en `video/poster.jpg`, `logo.svg`, `logo-icoon.svg`.
 
 ## Vaste gegevens
@@ -24,7 +26,8 @@ Statische website van nederlandseisolatiegroep.nl. Geen build-stap, geen framewo
 
 ## Formulieren
 - Aanvraagformulier (homepage en contact) en nieuwsbrief versturen via Web3Forms naar info@nederlandseisolatiegroep.nl. Zie `W3F_KEY` in het script onderaan elke pagina.
-- Zolang `W3F_KEY` leeg is, opent het mailprogramma van de bezoeker met de aanvraag erin. De sleutel moet nog worden aangevraagd op web3forms.com en in alle 17 pagina's worden ingevuld.
+- De subsidiecheck verstuurt ook via Web3Forms: `w3fKey` in `CONFIG` in `subsidiecheck/index.html`.
+- Zolang `W3F_KEY` leeg is, opent het mailprogramma van de bezoeker met de aanvraag erin. De sleutel moet nog worden aangevraagd op web3forms.com en in alle 17 pagina's én in de subsidiecheck worden ingevuld.
 
 ## Afspraken
 - Geen cookies, analytics, Meta Pixel of andere tracking toevoegen zonder overleg met Daan. Anders kloppen de cookie- en privacyverklaring niet meer.
@@ -34,5 +37,5 @@ Statische website van nederlandseisolatiegroep.nl. Geen build-stap, geen framewo
 - Controleer na een wijziging dat alle interne links en afbeeldingen nog naar bestaande bestanden wijzen.
 
 ## Nog open
-- Web3Forms-sleutel invullen.
+- Web3Forms-sleutel invullen (17 pagina's + subsidiecheck).
 - Echte reviews toevoegen zodra die er zijn (de reviewblokken zijn verwijderd).

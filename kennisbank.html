@@ -197,7 +197,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-of
 <details><summary>Isolatie</summary><a href="spouwmuurisolatie.html">Spouwmuurisolatie</a><a href="vloerisolatie.html">Vloerisolatie</a><a href="bodemisolatie.html">Bodemisolatie</a><a href="dakisolatie.html">Dakisolatie</a><a href="isolatieglas.html">HR++ en triple glas</a></details>
 <details><summary>Services</summary><a href="contact.html">Gratis adviesgesprek</a><a href="subsidie.html">Hulp bij subsidie</a><a href="werkwijze.html">Onze werkwijze</a></details>
 <details><summary>Over ons</summary><a href="over-ons.html">Over ons</a><a href="werkwijze.html">Onze werkwijze</a></details>
-<a class="mm-link" href="subsidie.html">Subsidie</a>
+<a class="mm-link" href="subsidie.html">Subsidie</a> <a class="mm-link" href="/subsidiecheck?bron=menu" style="color:var(--groen)">Subsidiecheck</a>
 <a class="mm-link" href="contact.html">Contact</a>
 <a class="mm-link" href="kennisbank.html">Kennisbank</a>
 <div style="padding:20px 24px 24px;display:flex;flex-direction:column;gap:10px">
@@ -217,7 +217,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-of
 <button type="button" class="navknop" data-menu="m-over" aria-expanded="false">Over ons <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9 L12 15 L18 9" stroke="#0F2A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:4px 44px">
-<a href="subsidie.html" class="navlink">Subsidie</a>
+<a href="subsidie.html" class="navlink">Subsidie</a> <a href="/subsidiecheck?bron=menu" class="navlink"><span style="background:var(--groen);color:#fff;padding:8px 18px;border-radius:999px;font-size:17px;line-height:1.2">Subsidiecheck</span></a>
 <a href="contact.html" class="navlink">Contact</a>
 <a href="kennisbank.html" class="navlink">Kennisbank</a>
 </div>
@@ -341,5 +341,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-of
   var af=document.getElementById('aanvraagForm');if(af)af.addEventListener('submit',function(e){e.preventDefault();verstuur(this,'Nieuwe aanvraag adviesgesprek via de website','aanvraagDank');});
 })();
 </script>
+<style>.sc-sticky{display:none}@media (max-width:768px){.sc-sticky{display:block;position:fixed;left:12px;right:12px;bottom:12px;z-index:999;background:var(--groen);color:#fff;text-align:center;padding:16px;border-radius:999px;font-weight:700;text-decoration:none;box-shadow:0 8px 20px rgba(15,42,68,.3)}body{padding-bottom:80px}}</style>
+<a class="sc-sticky" href="/subsidiecheck?bron=mobiel">Bereken uw subsidie – gratis</a>
 </body>
 </html>

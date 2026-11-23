@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gratis subsidiecheck | Nederlandse Isolatie Groep</title>
+<meta name="description" content="Ontdek in 1 minuut hoeveel ISDE-subsidie u kunt krijgen voor isolatie van uw woning. Gratis en vrijblijvend.">
+<!--
+  SUBSIDIECHECK — Nederlandse Isolatie Groep
+  ------------------------------------------------------------
+  Zelfstandig bestand: geen cookies, geen tracking, geen externe scripts.
+  Alleen bij de adresstap wordt postcode+huisnummer opgevraagd bij de
+  gratis overheids-API van PDOK (Kadaster) om straat en gemeente te tonen.
+
+  AANPASSEN (zie CONFIG onderaan in het <script>):
+   - endpoint : URL waar de aanvraag naartoe gepost wordt (JSON).
+                Koppel dit aan dezelfde afhandeling als het formulier
+                "Gratis adviesgesprek aanvragen" (mail naar info@...).
+   - kleuren  : CSS-variabelen hieronder (--nig-...) gelijk zetten aan de huisstijl.
+   - logo     : <div class="nig-logo"> vervangen door het echte logo.
+
+  URL-PARAMETERS (voor advertenties):
+   ?bron=facebook   -> wordt meegestuurd met de aanvraag (zo ziet u welke advertentie werkt)
+   ?type=tussenwoning|hoekwoning|twee-onder-een-kap|vrijstaand|appartement
+                    -> slaat stap 1 over (handig voor advertenties per woningtype)
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<link rel="icon" href="/logo-icoon.svg" type="image/svg+xml">
+<style>
+  .nig{
+    --nig-navy:#0F2A44;       /* hoofdkleur (knoppen/blokken) */
+    --nig-blue:#1A73B8;       /* accent */
+    --nig-light:#8CC8F2;      /* licht accent (iconen, randen) */
+    --nig-bg:#F2F7FC;         /* achtergrond */
+    --nig-card:#EAF4FC;       /* lichte vlakken */
+    --nig-text:#0F2A44;
+    --nig-muted:#4A5B6C;
+    --nig-cta:#1A73B8;
+    --nig-cta-text:#ffffff;
+    --nig-radius:999px;
+    font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:var(--nig-text); background:var(--nig-bg);
+    min-height:100vh; -webkit-font-smoothing:antialiased;
+  }
+  .nig *{box-sizing:border-box}
+  .nig-top{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;max-width:640px;margin:0 auto}
+  .nig-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;color:var(--nig-navy);text-decoration:none;line-height:1.1}
+  .nig-logo small{display:block;font-weight:600;font-size:11px;letter-spacing:.12em;color:var(--nig-blue);text-transform:uppercase}
+  .nig-toplink{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--nig-muted);text-decoration:none;font-weight:600}
+  .nig-progress{height:5px;background:#dde4ee}
+  .nig-progress span{display:block;height:100%;width:0;background:var(--nig-blue);transition:width .35s ease}
+  .nig-wrap{max-width:640px;margin:0 auto;padding:34px 20px 60px}
+  .nig-step{display:none;animation:nigIn .3s ease}
+  .nig-step.is-active{display:block}
+  @keyframes nigIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .nig-eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--nig-blue);font-weight:700;margin:0 0 12px}
+  .nig h1,.nig h2,.nig h3{font-family:"Space Grotesk",system-ui,sans-serif}
+  .nig h1,.nig h2{font-size:clamp(30px,7.5vw,42px);line-height:1.1;margin:0 0 14px;font-weight:800;letter-spacing:-.02em}
+  .nig h3{font-size:22px;margin:30px 0 6px;font-weight:800}
+  .nig p.nig-lead{font-size:17px;line-height:1.55;color:var(--nig-text);margin:0 0 8px}
+  .nig p.nig-note{font-size:14.5px;line-height:1.5;color:var(--nig-muted);margin:0 0 18px}
+  .nig-options{display:grid;gap:14px;margin-top:26px}
+  .nig-opt{display:flex;align-items:center;gap:18px;width:100%;padding:22px 28px;border-radius:var(--nig-radius);
+    background:var(--nig-navy);color:#fff;border:2px solid transparent;font:inherit;font-size:19px;font-weight:600;
+    text-align:left;cursor:pointer;box-shadow:0 6px 16px rgba(15,42,68,.14);transition:transform .12s,border-color .12s}
+  .nig-opt:hover{transform:translateY(-1px)}
+  .nig-opt:focus-visible{outline:none;border-color:var(--nig-light)}
+  .nig-opt.is-selected{border-color:var(--nig-light);box-shadow:0 0 0 3px rgba(140,200,242,.35),0 6px 16px rgba(15,42,68,.14)}
+  .nig-opt svg{flex:0 0 26px;width:26px;height:26px;stroke:var(--nig-light);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .nig-opt .nig-check{margin-left:auto;width:30px;height:30px;border-radius:50%;border:2px solid rgba(255,255,255,.35);flex:0 0 30px;display:grid;place-items:center}
+  .nig-opt.is-selected .nig-check{background:var(--nig-light);border-color:var(--nig-light)}
+  .nig-opt.is-selected .nig-check::after{content:"";width:12px;height:7px;border-left:2.5px solid var(--nig-navy);border-bottom:2.5px solid var(--nig-navy);transform:rotate(-45deg) translate(1px,-1px)}
+  .nig-opt .nig-sub{display:block;font-size:13px;font-weight:500;color:var(--nig-light);margin-top:2px}
+  .nig-badge{margin-top:28px;padding:20px 22px;border-radius:22px;background:var(--nig-card);text-align:center}
+  .nig-badge strong{display:block;font-size:17px}
+  .nig-badge span{font-size:14.5px;color:var(--nig-muted)}
+  .nig-back{display:inline-flex;align-items:center;gap:8px;margin-top:26px;background:none;border:0;font:inherit;font-size:17px;font-weight:600;color:var(--nig-muted);cursor:pointer;padding:6px 0}
+  .nig-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;padding:22px 28px;border-radius:24px;background:var(--nig-navy);color:#fff}
+  .nig-total span{font-size:15px;color:#c9d8ec}
+  .nig-total strong{font-size:clamp(28px,7vw,38px);color:var(--nig-light);font-weight:800;letter-spacing:-.01em}
+  .nig-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:16px;padding:21px 24px;border:0;border-radius:var(--nig-radius);
+    background:var(--nig-cta);color:var(--nig-cta-text);font:inherit;font-size:19px;font-weight:700;cursor:pointer;text-decoration:none;box-shadow:0 8px 18px rgba(26,115,184,.28)}
+  .nig-btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
+  .nig-btn.is-ghost{background:#fff;color:var(--nig-navy);border:2px solid var(--nig-navy);box-shadow:none}
+  .nig-btn.is-wa{background:#25d366;color:#08331a;box-shadow:none}
+  .nig-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .nig-row.is-addr{grid-template-columns:1.6fr 1fr .8fr}
+  .nig-field{display:block;margin-top:18px}
+  .nig-field label{display:block;font-weight:700;font-size:15.5px;margin-bottom:8px}
+  .nig-field input{width:100%;padding:18px 20px;border-radius:20px;border:1.5px solid #d6dde7;background:#fff;font:inherit;font-size:18px;color:var(--nig-text)}
+  .nig-field input:focus{outline:none;border-color:var(--nig-blue);box-shadow:0 0 0 3px rgba(26,115,184,.15)}
+  .nig-err{color:#b42318;font-size:14px;margin-top:10px;min-height:1em}
+  .nig-found{margin-top:16px;padding:16px 20px;border-radius:18px;background:var(--nig-card);font-size:15.5px;line-height:1.5}
+  .nig-consent{display:flex;gap:12px;align-items:flex-start;margin-top:18px;font-size:14.5px;color:var(--nig-muted);line-height:1.45}
+  .nig-consent input{width:22px;height:22px;margin-top:1px;accent-color:var(--nig-blue);flex:0 0 22px}
+  .nig-consent a{color:var(--nig-blue)}
+  .nig-summary{margin:22px 0 0;padding:0;list-style:none;border-radius:22px;background:#fff;border:1.5px solid #dde4ee;overflow:hidden}
+  .nig-summary li{display:flex;justify-content:space-between;gap:12px;padding:14px 20px;border-top:1px solid #eef2f7;font-size:15.5px}
+  .nig-summary li:first-child{border-top:0}
+  .nig-summary li span:first-child{color:var(--nig-muted)}
+  .nig-summary li span:last-child{font-weight:700;text-align:right}
+  .nig-usps{display:grid;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+  .nig-usps li{display:flex;gap:10px;font-size:15.5px;line-height:1.4}
+  .nig-usps li::before{content:"";flex:0 0 18px;height:18px;margin-top:2px;border-radius:50%;background:var(--nig-light) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F2A44' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/11px no-repeat}
+  .nig-small{font-size:12.5px;color:var(--nig-muted);line-height:1.5;margin-top:22px}
+  @media (max-width:420px){.nig-row.is-addr{grid-template-columns:1fr 1fr}.nig-row.is-addr .nig-field:first-child{grid-column:1/-1}.nig-opt{padding:20px 22px;font-size:18px}}
+</style>
+</head>
+<body style="margin:0">
+<div class="nig" id="nig-check">
+
+  <header class="nig-top">
+    <a class="nig-logo" href="/" aria-label="Nederlandse Isolatie Groep – home"><img src="/logo.svg" alt="Nederlandse Isolatie Groep" width="200" height="40" style="display:block;height:40px;width:auto"></a>
+    <a class="nig-toplink" href="tel:+31685235975">Bel ons</a>
+  </header>
+  <div class="nig-progress" aria-hidden="true"><span id="nig-bar"></span></div>
+
+  <main class="nig-wrap">
+
+    <!-- STAP 1: woningtype -->
+    <section class="nig-step is-active" data-step="type">
+      <p class="nig-eyebrow">Stap 1 van 5</p>
+      <h1>Wat voor woning heeft u?</h1>
+      <div class="nig-options" data-single="type">
+        <button class="nig-opt" data-value="tussenwoning"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9.5 21v-6h5v6"/></svg>Tussenwoning</button>
+        <button class="nig-opt" data-value="hoekwoning"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h10"/><path d="M18 15v6M15 18h6"/></svg>Hoekwoning</button>
+        <button class="nig-opt" data-value="twee-onder-een-kap"><svg viewBox="0 0 24 24"><path d="M2 11 7 6l5 5 5-5 5 5"/><path d="M4 9.5V21h16V9.5M12 11v10"/></svg>Twee-onder-een-kap</button>
+        <button class="nig-opt" data-value="vrijstaand"><svg viewBox="0 0 24 24"><path d="M4 11 12 4l8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/><path d="M2 20h20"/></svg>Vrijstaande woning</button>
+        <button class="nig-opt" data-value="appartement"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>Appartement</button>
+      </div>
+      <div class="nig-badge">
+        <strong>Ontdek in 1 minuut uw subsidie op isolatie</strong>
+        <span>Gratis en vrijblijvend · gebaseerd op de ISDE 2026</span>
+      </div>
+    </section>
+
+    <!-- STAP 2: eigenaar -->
+    <section class="nig-step" data-step="owner">
+      <p class="nig-eyebrow">Stap 2 van 5</p>
+      <h2>Bent u eigenaar van de woning?</h2>
+      <div class="nig-options" data-single="owner">
+        <button class="nig-opt" data-value="ja"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Ja</button>
+        <button class="nig-opt" data-value="nee"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>Nee, ik huur</button>
+      </div>
+      <button class="nig-back" data-back>← Terug</button>
+    </section>
+
+    <!-- Huurder: uitleg -->
+    <section class="nig-step" data-step="tenant">
+      <p class="nig-eyebrow">Goed om te weten</p>
+      <h2>De ISDE-subsidie is voor eigenaren</h2>
+      <p class="nig-lead">Huurt u? Dan kan uw verhuurder de woning laten isoleren. Dat levert ook u een lagere energierekening en een comfortabeler huis op.</p>
+      <p class="nig-note">Heeft u een vraag? Wij denken graag vrijblijvend met u mee.</p>
+      <a class="nig-btn is-wa" href="https://wa.me/31685235975" target="_blank" rel="noopener">WhatsApp ons (24/7)</a>
+      <a class="nig-btn is-ghost" href="tel:+31685235975">Bel +31 6 85235975</a>
+      <button class="nig-back" data-back>← Terug</button>
+    </section>
+
+    <!-- STAP 3: bouwjaar -->
+    <section class="nig-step" data-step="year">
+      <p class="nig-eyebrow">Stap 3 van 5</p>
+      <h2>Wanneer is uw woning ongeveer gebouwd?</h2>
+      <div class="nig-options" data-single="year">
+        <button class="nig-opt" data-value="voor1925"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>Vóór 1925</button>
+        <button class="nig-opt" data-value="1925-1976"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h4M7 17h7"/></svg>1925 t/m 1976</button>
+        <button class="nig-opt" data-value="na1976"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Na 1976</button>
+        <button class="nig-opt" data-value="onbekend"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01"/></svg>Weet ik niet</button>
+      </div>
+      <button class="nig-back" data-back>← Terug</button>
+    </section>
+
+    <!-- STAP 4: maatregelen + live subsidie -->
+    <section class="nig-step" data-step="measures">
+      <p class="nig-eyebrow" id="nig-m-eyebrow">Stap 4 van 5</p>
+      <h2 id="nig-m-title">Uw mogelijkheden</h2>
+      <p class="nig-lead" id="nig-m-text"></p>
+      <p class="nig-note">Dit is een eerste inschatting. Een specialist van ons kijkt bij u thuis wat er precies kan.</p>
+      <h3>Wat wilt u laten bekijken?</h3>
+      <p class="nig-note" style="margin-bottom:0">Kies er één of meer. <strong>Bij twee of meer maatregelen verdubbelt de ISDE-subsidie per m².</strong></p>
+      <div class="nig-options" id="nig-measures"></div>
+      <div class="nig-total" aria-live="polite"><span>Indicatie ISDE-subsidie</span><strong id="nig-total">€ 0</strong></div>
+      <button class="nig-btn" id="nig-m-next" disabled>Verder →</button>
+      <button class="nig-back" data-back>← Terug</button>
+    </section>
+
+    <!-- STAP 5a: adres -->
+    <section class="nig-step" data-step="address">
+      <p class="nig-eyebrow">Stap 5 van 5 · Uw adres</p>
+      <h2>Waar staat uw woning?</h2>
+      <p class="nig-note">We zoeken uw adres op en controleren of uw gemeente een eigen isolatiesubsidie heeft, bovenop de ISDE.</p>
+      <div class="nig-row is-addr">
+        <div class="nig-field"><label for="nig-pc">Postcode</label><input id="nig-pc" inputmode="text" autocomplete="postal-code" placeholder="1234 AB" maxlength="7"></div>
+        <div class="nig-field"><label for="nig-hn">Huisnummer</label><input id="nig-hn" inputmode="numeric" placeholder="12" maxlength="6"></div>
+        <div class="nig-field"><label for="nig-tv">Toev.</label><input id="nig-tv" placeholder="A" maxlength="6"></div>
+      </div>
+      <div class="nig-err" id="nig-addr-err"></div>
+      <button class="nig-btn" id="nig-addr-btn">Zoek mijn adres op</button>
+      <button class="nig-back" data-back>← Terug</button>
+    </section>
+
+    <!-- STAP 5b: contactgegevens -->
+    <section class="nig-step" data-step="contact">
+      <p class="nig-eyebrow">Bijna klaar</p>
+      <h2>Waar mogen we uw subsidieoverzicht naartoe sturen?</h2>
+      <div class="nig-found" id="nig-found"></div>
+      <div class="nig-row">
+        <div class="nig-field"><label for="nig-fn">Voornaam</label><input id="nig-fn" autocomplete="given-name"></div>
+        <div class="nig-field"><label for="nig-ln">Achternaam</label><input id="nig-ln" autocomplete="family-name"></div>
+      </div>
+      <div class="nig-field"><label for="nig-tel">Telefoonnummer</label><input id="nig-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 12345678"></div>
+      <div class="nig-field"><label for="nig-mail">E-mailadres</label><input id="nig-mail" type="email" inputmode="email" autocomplete="email" placeholder="naam@voorbeeld.nl"></div>
+      <label class="nig-consent"><input type="checkbox" id="nig-ok">
+        <span>Ik ga ermee akkoord dat Nederlandse Isolatie Groep contact met mij opneemt over mijn subsidiecheck. Zie onze <a href="/privacy" target="_blank">privacyverklaring</a>.</span></label>
+      <div class="nig-err" id="nig-c-err"></div>
+      <button class="nig-btn" id="nig-send">Ontvang mijn gratis subsidieadvies</button>
+      <ul class="nig-usps">
+        <li>Gratis adviesgesprek bij u thuis</li>
+        <li>Wij regelen de subsidieaanvraag voor u</li>
+        <li>Isolatie vaak binnen 1 dag aangebracht</li>
+      </ul>
+      <button class="nig-back" data-back>← Terug</button>
+    </section>
+
+    <!-- BEDANKT -->
+    <section class="nig-step" data-step="done">
+      <p class="nig-eyebrow">Aanvraag ontvangen</p>
+      <h2 id="nig-done-title">Bedankt!</h2>
+      <p class="nig-lead">Een adviseur neemt binnen 1 werkdag contact met u op om een gratis adviesgesprek in te plannen. Daarin bekijken we uw woning en rekenen we de subsidie precies uit.</p>
+      <ul class="nig-summary" id="nig-summary"></ul>
+      <p class="nig-note" style="margin-top:22px">Liever direct contact?</p>
+      <a class="nig-btn is-wa" href="https://wa.me/31685235975" target="_blank" rel="noopener">WhatsApp ons (24/7)</a>
+      <a class="nig-btn is-ghost" href="tel:+31685235975">Bel +31 6 85235975 (dagelijks 08:00–20:00)</a>
+    </section>
+
+    <p class="nig-small">De indicatie is gebaseerd op de ISDE-bedragen 2026 van RVO en een gemiddeld oppervlak voor uw woningtype. Het definitieve bedrag hangt af van het werkelijke aantal m², het isolatiemateriaal en de voorwaarden van RVO. Aan deze indicatie kunnen geen rechten worden ontleend.</p>
+  </main>
+</div>
+
+<script>
+(function(){
+  /* ============ CONFIG ============ */
+  var CONFIG = {
+    // Web3Forms-toegangssleutel (dezelfde als in de andere formulieren van de site).
+    // Leeg = het mailprogramma van de bezoeker opent met de aanvraag naar info@nederlandseisolatiegroep.nl.
+    w3fKey: "",
+    whatsapp: "31685235975"
+  };
+
+  /* ISDE 2026 (RVO), bedrag per m² bij één maatregel. Bij 2+ maatregelen x2. */
+  var RATES = {
+    spouw: {label:"Spouwmuurisolatie", rate:5.25, min:10, max:170},
+    dak:   {label:"Dakisolatie",       rate:16.25, min:20, max:200},
+    vloer: {label:"Vloerisolatie",     rate:5.50, min:20, max:130},
+    glas:  {label:"HR++ glas",         rate:25.00, min:3,  max:45}
+  };
+  /* Gemiddeld oppervlak (m²) per woningtype — voorzichtige schatting. */
+  var AREA = {
+    "tussenwoning":       {spouw:40,  dak:45, vloer:50, glas:12},
+    "hoekwoning":         {spouw:75,  dak:50, vloer:55, glas:15},
+    "twee-onder-een-kap": {spouw:95,  dak:60, vloer:60, glas:18},
+    "vrijstaand":         {spouw:130, dak:80, vloer:75, glas:22},
+    "appartement":        {spouw:30,  dak:0,  vloer:0,  glas:10}
+  };
+  var LABELS = {
+    type:{"tussenwoning":"Tussenwoning","hoekwoning":"Hoekwoning","twee-onder-een-kap":"Twee-onder-een-kap","vrijstaand":"Vrijstaande woning","appartement":"Appartement"},
+    year:{"voor1925":"Vóór 1925","1925-1976":"1925 t/m 1976","na1976":"Na 1976","onbekend":"Onbekend"}
+  };
+  var ICONS = {
+    spouw:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="16"/><rect x="14" y="4" width="7" height="16"/><path d="M12 6v12" stroke-dasharray="2 2"/></svg>',
+    dak:'<svg viewBox="0 0 24 24"><path d="M12 4 2.5 19.5h19z"/></svg>',
+    vloer:'<svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 16 9 5 9-5"/></svg>',
+    glas:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>'
+  };
+
+  /* ============ STATE ============ */
+  var params = new URLSearchParams(location.search);
+  var S = {type:null, owner:null, year:null, measures:[], address:null, bron: params.get("bron") || params.get("utm_source") || "website", campagne: params.get("utm_campaign") || ""};
+  var history_ = [];
+  var root = document.getElementById("nig-check");
+  var STEP_PROGRESS = {type:8, owner:28, tenant:28, year:46, measures:64, address:82, contact:94, done:100};
+
+  function $(id){return document.getElementById(id)}
+  function euro(n){return "€ " + Math.round(n).toLocaleString("nl-NL")}
+  function show(step, push){
+    var cur = root.querySelector(".nig-step.is-active");
+    if (push !== false && cur) history_.push(cur.getAttribute("data-step"));
+    root.querySelectorAll(".nig-step").forEach(function(s){s.classList.toggle("is-active", s.getAttribute("data-step")===step)});
+    $("nig-bar").style.width = (STEP_PROGRESS[step]||0) + "%";
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+  root.querySelectorAll("[data-back]").forEach(function(b){
+    b.addEventListener("click", function(){ if(history_.length) show(history_.pop(), false); });
+  });
+
+  /* Enkele keuze-stappen */
+  root.querySelectorAll("[data-single]").forEach(function(group){
+    var key = group.getAttribute("data-single");
+    group.querySelectorAll(".nig-opt").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        group.querySelectorAll(".nig-opt").forEach(function(b){b.classList.remove("is-selected")});
+        btn.classList.add("is-selected");
+        S[key] = btn.getAttribute("data-value");
+        setTimeout(function(){ next(key); }, 180);
+      });
+    });
+  });
+  function next(key){
+    if (key==="type") show("owner");
+    else if (key==="owner") show(S.owner==="ja" ? "year" : "tenant");
+    else if (key==="year") { buildMeasures(); show("measures"); }
+  }
+
+  /* Stap 4: maatregelen */
+  function availableMeasures(){
+    var list = ["spouw","dak","vloer","glas"];
+    if (S.year==="voor1925") list = list.filter(function(m){return m!=="spouw"});
+    if (S.type==="appartement") list = list.filter(function(m){return AREA.appartement[m]>0});
+    return list;
+  }
+  function buildMeasures(){
+    var eyebrow = "Stap 4 van 5", title, text;
+    if (S.year==="voor1925"){ eyebrow="Andere mogelijkheden"; title="Uw woning heeft waarschijnlijk geen spouwmuur";
+      text="Huizen van vóór 1925 hebben meestal massieve muren, zonder ruimte tussen binnen- en buitenmuur. Spouwmuurisolatie is dan niet mogelijk, maar dak, vloer en glas vaak wel."; }
+    else if (S.year==="1925-1976"){ title="Grote kans op een ongeïsoleerde spouwmuur";
+      text="Woningen uit deze periode hebben vaak een spouwmuur zonder isolatie. Daar valt veel te besparen, en met een tweede maatregel verdubbelt uw subsidie."; }
+    else if (S.year==="na1976"){ title="Uw woning is waarschijnlijk deels geïsoleerd";
+      text="Na 1976 werd vaak al wat isolatie aangebracht, maar die is meestal dun. Na-isoleren van dak, vloer of glas levert vaak nog veel op."; }
+    else { title="Dit zijn uw mogelijkheden";
+      text="Geen probleem als u het bouwjaar niet weet. Kies wat u wilt laten bekijken; wij controleren het bij u thuis."; }
+    if (S.type==="appartement") text += " Bij een appartement gaat spouwmuurisolatie vaak via de VvE; ook dat regelen wij graag.";
+    $("nig-m-eyebrow").textContent = eyebrow; $("nig-m-title").textContent = title; $("nig-m-text").textContent = text;
+
+    var avail = availableMeasures();
+    // voorselectie: spouw bij 1925-1976
+    S.measures = S.measures.filter(function(m){return avail.indexOf(m)>-1});
+    if (!S.measures.length && S.year==="1925-1976" && avail.indexOf("spouw")>-1) S.measures=["spouw"];
+
+    var wrap = $("nig-measures"); wrap.innerHTML = "";
+    avail.forEach(function(m){
+      var b = document.createElement("button");
+      b.className = "nig-opt" + (S.measures.indexOf(m)>-1 ? " is-selected":"");
+      b.setAttribute("aria-pressed", S.measures.indexOf(m)>-1);
+      b.innerHTML = ICONS[m] + '<span>' + RATES[m].label + '<span class="nig-sub" data-sub="'+m+'"></span></span><span class="nig-check"></span>';
+      b.addEventListener("click", function(){
+        var i = S.measures.indexOf(m);
+        if (i>-1) S.measures.splice(i,1); else S.measures.push(m);
+        b.classList.toggle("is-selected", i===-1); b.setAttribute("aria-pressed", i===-1);
+        updateTotal();
+      });
+      wrap.appendChild(b);
+    });
+    var none = document.createElement("button");
+    none.className="nig-opt"; none.innerHTML='<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>Ik weet het nog niet, adviseer mij';
+    none.addEventListener("click", function(){ S.measures=["advies"]; show("address"); });
+    wrap.appendChild(none);
+    updateTotal();
+  }
+  function calc(){
+    var a = AREA[S.type] || AREA["tussenwoning"];
+    var ms = S.measures.filter(function(m){return RATES[m]});
+    var factor = ms.length >= 2 ? 2 : 1, total = 0, parts = {};
+    ms.forEach(function(m){
+      var r = RATES[m], m2 = Math.min(Math.max(a[m]||0, r.min), r.max);
+      parts[m] = r.rate * factor * m2; total += parts[m];
+    });
+    return {total: Math.round(total/5)*5, parts: parts, factor: factor};
+  }
+  function updateTotal(){
+    var c = calc();
+    $("nig-total").textContent = euro(c.total);
+    root.querySelectorAll("[data-sub]").forEach(function(el){
+      var m = el.getAttribute("data-sub");
+      el.textContent = c.parts[m] ? "± " + euro(c.parts[m]) + (c.factor===2 ? " (verdubbeld)" : "") : "";
+    });
+    $("nig-m-next").disabled = !S.measures.length;
+  }
+  $("nig-m-next").addEventListener("click", function(){ show("address"); });
+
+  /* Stap 5a: adres opzoeken via PDOK (gratis overheids-API, geen sleutel nodig) */
+  $("nig-pc").addEventListener("input", function(e){ e.target.value = e.target.value.toUpperCase(); });
+  $("nig-addr-btn").addEventListener("click", function(){
+    var pc = $("nig-pc").value.replace(/\s/g,"").toUpperCase(), hn = $("nig-hn").value.trim(), tv = $("nig-tv").value.trim();
+    var err = $("nig-addr-err"); err.textContent = "";
+    if (!/^[1-9][0-9]{3}[A-Z]{2}$/.test(pc)) { err.textContent = "Vul een geldige postcode in, bijvoorbeeld 1234 AB."; return; }
+    if (!/^[0-9]+$/.test(hn)) { err.textContent = "Vul uw huisnummer in (alleen cijfers)."; return; }
+    var btn = this; btn.disabled = true; btn.textContent = "Adres opzoeken…";
+    var url = "https://api.pdok.nl/bzk/locatieserver/search/v3_1/free?fq=type:adres&rows=1&q=" +
+              encodeURIComponent("postcode:" + pc + " and huisnummer:" + hn);
+    var done = function(addr){
+      S.address = addr; btn.disabled = false; btn.textContent = "Zoek mijn adres op";
+      var html = addr.straat
+        ? "<strong>" + addr.straat + " " + hn + (tv ? " " + tv : "") + ", " + addr.plaats + "</strong><br>Gemeente " + addr.gemeente + ": wij controleren of hier een extra lokale isolatiesubsidie geldt."
+        : "<strong>" + pc.slice(0,4) + " " + pc.slice(4) + " " + hn + (tv ? " " + tv : "") + "</strong><br>Wij controleren of uw gemeente een extra isolatiesubsidie heeft.";
+      $("nig-found").innerHTML = html;
+      show("contact");
+    };
+    fetch(url).then(function(r){return r.json()}).then(function(j){
+      var d = j && j.response && j.response.docs && j.response.docs[0];
+      if (!d) { btn.disabled=false; btn.textContent="Zoek mijn adres op"; err.textContent="We konden dit adres niet vinden. Controleer postcode en huisnummer."; return; }
+      done({postcode:pc, huisnummer:hn, toevoeging:tv, straat:d.straatnaam, plaats:d.woonplaatsnaam, gemeente:d.gemeentenaam});
+    }).catch(function(){
+      // API niet bereikbaar: gewoon doorgaan zonder opzoeken
+      done({postcode:pc, huisnummer:hn, toevoeging:tv});
+    });
+  });
+
+  /* Stap 5b: versturen */
+  $("nig-send").addEventListener("click", function(){
+    var fn=$("nig-fn").value.trim(), ln=$("nig-ln").value.trim(), tel=$("nig-tel").value.trim(), mail=$("nig-mail").value.trim();
+    var err=$("nig-c-err"); err.textContent="";
+    if (!fn || !ln) { err.textContent="Vul uw voor- en achternaam in."; return; }
+    if (tel.replace(/[^0-9+]/g,"").length < 10) { err.textContent="Vul een geldig telefoonnummer in."; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) { err.textContent="Vul een geldig e-mailadres in."; return; }
+    if (!$("nig-ok").checked) { err.textContent="Geef toestemming zodat wij contact met u kunnen opnemen."; return; }
+
+    var c = calc();
+    var lead = {
+      formulier: "Subsidiecheck",
+      voornaam: fn, achternaam: ln, telefoon: tel, email: mail,
+      woningtype: LABELS.type[S.type], eigenaar: S.owner, bouwjaar: LABELS.year[S.year],
+      maatregelen: S.measures.map(function(m){return RATES[m] ? RATES[m].label : "Wil advies"}).join(", "),
+      indicatie_isde: euro(c.total),
+      postcode: S.address && S.address.postcode, huisnummer: S.address && S.address.huisnummer, toevoeging: S.address && S.address.toevoeging,
+      straat: S.address && S.address.straat || "", plaats: S.address && S.address.plaats || "", gemeente: S.address && S.address.gemeente || "",
+      bron: S.bron, campagne: S.campagne, datum: new Date().toISOString()
+    };
+    var btn=this; btn.disabled=true; btn.textContent="Versturen…";
+    var finish = function(){
+      $("nig-done-title").textContent = "Bedankt, " + fn + "!";
+      var rows = [["Woning", lead.woningtype], ["Bouwjaar", lead.bouwjaar], ["Maatregelen", lead.maatregelen]];
+      if (c.total) rows.push(["Indicatie ISDE-subsidie", lead.indicatie_isde]);
+      if (lead.straat) rows.push(["Adres", lead.straat + " " + lead.huisnummer + (lead.toevoeging ? " " + lead.toevoeging : "") + ", " + lead.plaats]);
+      $("nig-summary").innerHTML = rows.map(function(r){return "<li><span>"+r[0]+"</span><span>"+r[1]+"</span></li>"}).join("");
+      show("done"); history_ = [];
+    };
+    var viaMail = function(){
+      var regels = Object.keys(lead).map(function(k){ return k + ": " + (lead[k]==null ? "" : lead[k]); });
+      window.location.href = "mailto:info@nederlandseisolatiegroep.nl?subject=" + encodeURIComponent("Nieuwe aanvraag via de subsidiecheck") + "&body=" + encodeURIComponent(regels.join("\n"));
+      finish();
+    };
+    if (!CONFIG.w3fKey) { viaMail(); return; }
+    var data = {access_key: CONFIG.w3fKey, subject: "Nieuwe aanvraag via de subsidiecheck", from_name: "Subsidiecheck Nederlandse Isolatie Groep", replyto: mail};
+    Object.keys(lead).forEach(function(k){ data[k] = lead[k]; });
+    fetch("https://api.web3forms.com/submit", {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body: JSON.stringify(data)})
+      .then(function(r){ return r.json(); }).then(function(j){ if(!j || !j.success) throw new Error("mislukt"); finish(); })
+      .catch(function(){
+        btn.disabled=false; btn.textContent="Ontvang mijn gratis subsidieadvies";
+        err.innerHTML = 'Versturen lukte niet. Probeer het opnieuw of <a href="https://wa.me/'+CONFIG.whatsapp+'" target="_blank" rel="noopener">stuur ons een WhatsApp</a>.';
+      });
+  });
+
+  /* Woningtype vooraf invullen via ?type=... (voor advertenties per woningtype) */
+  var pre = params.get("type");
+  if (pre && AREA[pre]) { S.type = pre; history_.push("type"); show("owner", false); }
+  else { $("nig-bar").style.width = STEP_PROGRESS.type + "%"; }
+})();
+</script>
+</body>
+</html>
