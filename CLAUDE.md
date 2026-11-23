@@ -27,7 +27,7 @@ Statische website van nederlandseisolatiegroep.nl. Geen build-stap, geen framewo
 ## Formulieren
 - Aanvraagformulier (homepage en contact) en nieuwsbrief versturen via Web3Forms naar info@nederlandseisolatiegroep.nl. Zie `W3F_KEY` in het script onderaan elke pagina.
 - De subsidiecheck verstuurt ook via Web3Forms: `w3fKey` in `CONFIG` in `subsidiecheck/index.html`.
-- Zolang `W3F_KEY` leeg is, opent het mailprogramma van de bezoeker met de aanvraag erin. De sleutel moet nog worden aangevraagd op web3forms.com en in alle 17 pagina's én in de subsidiecheck worden ingevuld.
+- De Web3Forms-sleutel staat ingevuld (aangevraagd met info@nederlandseisolatiegroep.nl). Lukt versturen niet, dan opent als terugval het mailprogramma van de bezoeker. Pas je de sleutel aan, doe dat dan in alle 17 pagina's én in de subsidiecheck.
 
 ## Afspraken
 - Geen cookies, analytics, Meta Pixel of andere tracking toevoegen zonder overleg met Daan. Anders kloppen de cookie- en privacyverklaring niet meer.
@@ -37,5 +37,4 @@ Statische website van nederlandseisolatiegroep.nl. Geen build-stap, geen framewo
 - Controleer na een wijziging dat alle interne links en afbeeldingen nog naar bestaande bestanden wijzen.
 
 ## Nog open
-- Web3Forms-sleutel invullen (17 pagina's + subsidiecheck).
 - Echte reviews toevoegen zodra die er zijn (de reviewblokken zijn verwijderd).

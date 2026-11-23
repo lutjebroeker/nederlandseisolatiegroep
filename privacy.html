@@ -356,7 +356,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--groen-t);outline-of
   mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){zet(false);});});
   // Formulieren: versturen via Web3Forms naar info@nederlandseisolatiegroep.nl (geen cookies).
   // Zolang W3F_KEY leeg is, opent het mailprogramma van de bezoeker met de aanvraag erin.
-  var W3F_KEY='';
+  var W3F_KEY='5c99b1af-20d1-45bd-af0a-17dc6b9a5812';
   function velden(f){var d={};f.querySelectorAll('input').forEach(function(i){var l=i.id?f.querySelector('label[for="'+i.id+'"]'):null;l=l||i.closest('label');var naam=(l?l.textContent:i.id||i.name||'veld').replace(/\s*\*\s*$/,'').trim();d[naam]=i.type==='checkbox'?(i.checked?'Ja':'Nee'):i.value.trim();});return d;}
   function verstuur(f,onderwerp,dankId){
     var d=velden(f),knop=f.querySelector('button[type="submit"]'),tekst=knop?knop.textContent:'';
