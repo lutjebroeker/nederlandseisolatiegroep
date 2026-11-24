@@ -13,7 +13,7 @@ Statische website van nederlandseisolatiegroep.nl. Geen build-stap, geen framewo
 - Navigatie: elk menu-item en elke knop gaat naar een eigen pagina. Alleen de uitklapkopjes bij "Direct naar" op de homepage klappen open. "Isolatie", "Services" en "Over ons" zijn uitklapmenu's.
 - Subsidiecheck: `subsidiecheck/index.html`, bereikbaar op `/subsidiecheck`. Losse landingspagina zonder menu (voor advertenties). Knoppen ernaartoe: menu (naast Subsidie), homepage-hero, blok op de subsidiepagina en de 5 isolatiepagina's, en een vaste knop onderin op mobiel (alle pagina's). Advertentielinks: `/subsidiecheck?bron=facebook`, optioneel `&type=tussenwoning|hoekwoning|twee-onder-een-kap|vrijstaand|appartement` en `&utm_campaign=...`.
 - ISDE-bedragen in de subsidiecheck staan in `RATES` (bron: RVO, isolatiemaatregelen woningeigenaren, uitvoering 2025 of later). Gemiddelde oppervlaktes per woningtype in `AREA`. Controleer de bedragen bij een wijziging van de ISDE.
-- Media: `img/` (6 foto's), `video/nig-5-stappen.mp4` (uitlegvideo met voice-over) en `video/poster.jpg`, `logo.svg`, `logo-icoon.svg`.
+- Media: `img/` (6 foto's) en `img/isolatie/` (WebP-fotorijen op de 5 isolatiepagina's, 960×720, lazy loading; Unsplash/Pexels-licentie; bodem gebruikt voorlopig de vloerfoto's), `video/nig-5-stappen.mp4` (uitlegvideo met voice-over) en `video/poster.jpg`, `logo.svg`, `logo-icoon.svg`.
 
 ## Vaste gegevens
 - Telefoon: +31 6 85235975 (`tel:+31685235975`). Bellen elke dag 08:00–20:00, WhatsApp 24/7 via https://wa.me/31685235975.
