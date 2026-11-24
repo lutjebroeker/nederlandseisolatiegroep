@@ -16,7 +16,8 @@ Statische website van nederlandseisolatiegroep.nl. Geen build-stap, geen framewo
 - Media: `img/` (6 foto's) en `img/isolatie/` (WebP-fotorijen op de 5 isolatiepagina's, 960×720, lazy loading; Unsplash/Pexels-licentie; bodem gebruikt voorlopig de vloerfoto's), `video/nig-5-stappen.mp4` (uitlegvideo met voice-over) en `video/poster.jpg`, `logo.svg`, `logo-icoon.svg`.
 
 ## Vaste gegevens
-- Telefoon: +31 6 85235975 (`tel:+31685235975`). Bellen elke dag 08:00–20:00, WhatsApp 24/7 via https://wa.me/31685235975.
+- Telefoon: +31 85 250 1410 (`tel:+31852501410`). Bellen maandag t/m vrijdag 09:00–17:00.
+- WhatsApp: 24/7 via het mobiele nummer +31 6 85235975 (https://wa.me/31685235975).
 - E-mail: info@nederlandseisolatiegroep.nl
 - KvK: 42106969
 - Facebook: https://www.facebook.com/profile.php?id=61596782371164
