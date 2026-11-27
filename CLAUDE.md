@@ -14,6 +14,7 @@ Statische website van nederlandseisolatiegroep.nl. Geen build-stap, geen framewo
 - Subsidiecheck: `subsidiecheck/index.html`, bereikbaar op `/subsidiecheck`. Losse landingspagina zonder menu (voor advertenties). Knoppen ernaartoe: menu (naast Subsidie), homepage-hero, blok op de subsidiepagina en de 5 isolatiepagina's, en een vaste knop onderin op mobiel (alle pagina's). Advertentielinks: `/subsidiecheck?bron=facebook`, optioneel `&type=tussenwoning|hoekwoning|twee-onder-een-kap|vrijstaand|appartement` en `&utm_campaign=...`.
 - ISDE-bedragen in de subsidiecheck staan in `RATES` (bron: RVO, isolatiemaatregelen woningeigenaren, uitvoering 2025 of later). Gemiddelde oppervlaktes per woningtype in `AREA`. Controleer de bedragen bij een wijziging van de ISDE.
 - Media: `img/` (6 foto's) en `img/isolatie/` (WebP-fotorijen op de 5 isolatiepagina's, 960×720, lazy loading; Unsplash/Pexels-licentie; bodem gebruikt voorlopig de vloerfoto's), `video/nig-5-stappen.mp4` (uitlegvideo met voice-over) en `video/poster.jpg`, `logo.svg`, `logo-icoon.svg`.
+- Favicon (ook voor het logo in Google): `favicon.ico` (48 px), `favicon-48.png`, `favicon-192.png`, `favicon-512.png` en `apple-touch-icon.png` in de hoofdmap. Alle pagina's en de subsidiecheck verwijzen in de `<head>` naar `/favicon.ico`, `/favicon-192.png` en `/apple-touch-icon.png`. Gebruik geen `data:`-URL als favicon; die ondersteunt Google niet.
 
 ## Vaste gegevens
 - Telefoon: +31 85 250 1410 (`tel:+31852501410`). Bellen maandag t/m vrijdag 09:00–17:00.
