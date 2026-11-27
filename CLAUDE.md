@@ -17,7 +17,7 @@ Statische website van nederlandseisolatiegroep.nl. Geen build-stap, geen framewo
 - Favicon (ook voor het logo in Google): `favicon.ico` (48 px), `favicon-48.png`, `favicon-192.png`, `favicon-512.png` en `apple-touch-icon.png` in de hoofdmap. Alle pagina's en de subsidiecheck verwijzen in de `<head>` naar `/favicon.ico`, `/favicon-192.png` en `/apple-touch-icon.png`. Gebruik geen `data:`-URL als favicon; die ondersteunt Google niet.
 
 ## Vaste gegevens
-- Telefoon: +31 85 250 1410 (`tel:+31852501410`). Bellen maandag t/m vrijdag 09:00–17:00.
+- Telefoon: op de site zichtbaar als 085 250 1410 (niet +31 85); de bel-links blijven `tel:+31852501410`. Bellen maandag t/m vrijdag 09:00–17:00.
 - WhatsApp: 24/7 via het mobiele nummer +31 6 85235975 (https://wa.me/31685235975).
 - E-mail: info@nederlandseisolatiegroep.nl
 - KvK: 42106969
